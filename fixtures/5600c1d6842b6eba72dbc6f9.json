@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 180,
+  "volume_t_per_month": 220,
+  "logistics_split": "buyer_pickup",
+  "public_message": "We can offload 220 tonnes at Rs.180 per tonne, you pick it up.",
+  "private_reasoning": "Opening high to test buyer's willingness; our true cost floor is Rs.70/t, but we need to avoid disposal cost of Rs.500/t. Offering Rs.180/t gives margin and signals seriousness while keeping buyer responsible for transport to shift cost. Expect negotiation to move toward a mid\u2011point.",
+  "confidence": 0.9
+}

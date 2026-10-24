@@ -1,0 +1,15 @@
+{"counterparty_id": "jsr_steel_works", "counterparty_name": "Jamshedpur Integrated Steel Works", "material": "steel_slag", "outcome": "deal_closed", "final_price": 1075, "rounds": 5, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 100, "rounds": 3, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "human_approved", "final_price": null, "rounds": 0, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "human_approved", "final_price": null, "rounds": 0, "human_note": null}
+{"counterparty_id": "jsr_steel_works", "counterparty_name": "Jamshedpur Integrated Steel Works", "material": "steel_slag", "outcome": "deal_closed", "final_price": 925, "rounds": 5, "human_note": null}
+{"counterparty_id": "jsr_steel_works", "counterparty_name": "Jamshedpur Integrated Steel Works", "material": "steel_slag", "outcome": "deal_closed", "final_price": 925, "rounds": 5, "human_note": null}
+{"counterparty_id": "jsr_thermal_power", "counterparty_name": "Jamshedpur Thermal Power Station", "material": "fly_ash", "outcome": "deal_closed", "final_price": 365, "rounds": 5, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 100, "rounds": 4, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "human_approved", "final_price": null, "rounds": 0, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "human_approved", "final_price": null, "rounds": 0, "human_note": null}
+{"counterparty_id": "hospet_steel", "counterparty_name": "Hospet Steel & Alloys Ltd", "material": "steel_slag", "outcome": "deal_closed", "final_price": 1000, "rounds": 5, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 95, "rounds": 5, "human_note": null}
+{"counterparty_id": "jsr_thermal_power", "counterparty_name": "Jamshedpur Thermal Power Station", "material": "fly_ash", "outcome": "deal_closed", "final_price": 365, "rounds": 4, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 95, "rounds": 4, "human_note": null}
+{"counterparty_id": "hospet_steel", "counterparty_name": "Hospet Steel & Alloys Ltd", "material": "steel_slag", "outcome": "deal_closed", "final_price": 1000, "rounds": 4, "human_note": null}

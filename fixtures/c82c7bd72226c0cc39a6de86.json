@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 16000,
+  "volume_t_per_month": 70,
+  "logistics_split": "seller_delivers",
+  "public_message": "How about Rs\u202f16,000 per tonne for 70\u202ft, delivered?",
+  "private_reasoning": "Counter to 16k, still below ceiling, aim margin, maintain loop.",
+  "confidence": 0.85
+}

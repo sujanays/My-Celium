@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 185,
+  "volume_t_per_month": 260,
+  "logistics_split": "seller_delivers",
+  "public_message": "Could you meet us at Rs\u202f185 per tonne, same delivery terms?",
+  "private_reasoning": "Aim lower than seller's 200, still acceptable; maintain reliability, improve price.",
+  "confidence": 0.78
+}

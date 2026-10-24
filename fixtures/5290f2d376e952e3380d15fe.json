@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 900,
+  "volume_t_per_month": 180,
+  "logistics_split": "seller_delivers",
+  "public_message": "Hey, we can offload 180 tonnes at Rs.900 per tonne and we\u2019ll handle the transport \u2013 let\u2019s get this rolling!",
+  "private_reasoning": "Opening at our ask of Rs.900/t to signal value and cover transport costs; our true floor is Rs.550/t so we have wiggle room if needed, but we want to start high to test buyer's flexibility. Logistics are cheap (6km) so offering seller_delivers is easy and keeps the loop moving. Need a quick deal due to 3\u2011day move rule.",
+  "confidence": 0.92
+}

@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 350,
+  "volume_t_per_month": 800,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can take 800\u202ft at Rs\u202f350/t, delivered to our site.",
+  "private_reasoning": "Target 350, counter at 350 for 800t to align volume, keep seller delivery, stay below ceiling.",
+  "confidence": 0.7
+}

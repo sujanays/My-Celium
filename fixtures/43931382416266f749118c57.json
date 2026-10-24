@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 365,
+  "volume_t_per_month": 300,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can supply 300 tonnes at Rs.365 per tonne, delivered to your site.",
+  "private_reasoning": "Open near past deal price to build trust, still above floor, allow negotiation room.",
+  "confidence": 0.85
+}

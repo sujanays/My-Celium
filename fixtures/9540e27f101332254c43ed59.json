@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 3400,
+  "volume_t_per_month": 80,
+  "logistics_split": "buyer_pickup",
+  "public_message": "We can do Rs\u202f3,400 per tonne for 80\u202ft, with you handling pickup.",
+  "private_reasoning": "Counter at midpoint to improve margin while meeting buyer\u2019s pickup preference, maintaining volume to maximize sales.",
+  "confidence": 0.78
+}

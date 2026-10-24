@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 115,
+  "volume_t_per_month": 150,
+  "logistics_split": "buyer_pickup",
+  "public_message": "We can supply 150\u202ft/month at Rs\u202f115 per tonne, buyer pickup.",
+  "private_reasoning": "Open near past closure price, keep margin for negotiation.",
+  "confidence": 0.85
+}

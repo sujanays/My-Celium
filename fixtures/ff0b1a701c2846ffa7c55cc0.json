@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 365,
+  "volume_t_per_month": 800,
+  "logistics_split": "seller_delivers",
+  "public_message": "We accept 800\u202ft/month at Rs.365 per tonne, delivery as proposed.",
+  "private_reasoning": "Offer meets acceptable cost below ceiling and aligns with past deal; accept to secure supply.",
+  "confidence": 0.95
+}

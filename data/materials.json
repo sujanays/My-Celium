@@ -1,0 +1,156 @@
+{
+  "steel_slag": {
+    "name": "Steel Slag (BF/BOF)",
+    "category": "metallurgical",
+    "virgin_price_inr_per_t": 3200,
+    "virgin_co2_t_per_t": 0.87,
+    "disposal_cost_inr_per_t": 350,
+    "hazard_class": "none",
+    "price_band": [
+      800,
+      1400
+    ],
+    "substitutes_for": "cement clinker / GGBS component, road base aggregate",
+    "note": "Well-documented Tata/JSW practice; displaces clinker in blended cement."
+  },
+  "fly_ash": {
+    "name": "Fly Ash (Class F)",
+    "category": "combustion_residue",
+    "virgin_price_inr_per_t": 2800,
+    "virgin_co2_t_per_t": 0.82,
+    "disposal_cost_inr_per_t": 300,
+    "hazard_class": "none",
+    "price_band": [
+      200,
+      600
+    ],
+    "substitutes_for": "cement / brick clay",
+    "note": "MoEFCC Fly Ash Notification 2009 (as amended 2016/2021): mandatory utilisation within 300 km radius of the thermal power station for construction/ash-based products."
+  },
+  "spent_brewery_grain": {
+    "name": "Spent Brewery Grain (BSG)",
+    "category": "agro_residue",
+    "virgin_price_inr_per_t": 9000,
+    "virgin_co2_t_per_t": 0.4,
+    "disposal_cost_inr_per_t": 1200,
+    "hazard_class": "none",
+    "price_band": [
+      500,
+      1500
+    ],
+    "substitutes_for": "protein-rich cattle feed (maize/soybean meal)",
+    "note": "Highly perishable (ferments in ~48h) - short storage_days window forces fast deals."
+  },
+  "textile_dyeing_sludge": {
+    "name": "Textile Dyeing Sludge (ETP sludge)",
+    "category": "hazardous_process_residue",
+    "virgin_price_inr_per_t": 1500,
+    "virgin_co2_t_per_t": 0.3,
+    "disposal_cost_inr_per_t": 4500,
+    "hazard_class": "hazardous",
+    "price_band": [
+      0,
+      300
+    ],
+    "substitutes_for": "alternative fuel/raw material in cement kiln co-processing",
+    "note": "Hazardous and Other Wastes (Management & Transboundary Movement) Rules, 2016 - requires CPCB-authorised co-processing/TSDF facility with a valid hazardous-waste handling license."
+  },
+  "foundry_sand": {
+    "name": "Spent Foundry Sand",
+    "category": "metallurgical",
+    "virgin_price_inr_per_t": 900,
+    "virgin_co2_t_per_t": 0.06,
+    "disposal_cost_inr_per_t": 250,
+    "hazard_class": "none",
+    "price_band": [
+      150,
+      400
+    ],
+    "substitutes_for": "river sand / construction aggregate",
+    "note": "Widely reused in paver blocks and construction fill across Peenya/Hosur belt."
+  },
+  "lime_sludge": {
+    "name": "Paper Mill Lime Sludge",
+    "category": "process_residue",
+    "virgin_price_inr_per_t": 700,
+    "virgin_co2_t_per_t": 0.85,
+    "disposal_cost_inr_per_t": 400,
+    "hazard_class": "none",
+    "price_band": [
+      100,
+      350
+    ],
+    "substitutes_for": "limestone in cement raw meal",
+    "note": "Avoided limestone calcination CO2 is the dominant climate benefit."
+  },
+  "rice_husk": {
+    "name": "Rice Husk",
+    "category": "agro_residue",
+    "virgin_price_inr_per_t": 2600,
+    "virgin_co2_t_per_t": 1.4,
+    "disposal_cost_inr_per_t": 150,
+    "hazard_class": "none",
+    "price_band": [
+      1500,
+      2200
+    ],
+    "substitutes_for": "coal/biomass boiler fuel",
+    "note": "High calorific value; displaces coal directly in captive boilers."
+  },
+  "rice_husk_ash": {
+    "name": "Rice Husk Ash",
+    "category": "combustion_residue",
+    "virgin_price_inr_per_t": 12000,
+    "virgin_co2_t_per_t": 1.8,
+    "disposal_cost_inr_per_t": 300,
+    "hazard_class": "none",
+    "price_band": [
+      2000,
+      5000
+    ],
+    "substitutes_for": "precipitated silica feedstock",
+    "note": "High amorphous silica content (~90%) makes this valuable, not just waste."
+  },
+  "dairy_manure_whey": {
+    "name": "Dairy Manure & Whey",
+    "category": "agro_residue",
+    "virgin_price_inr_per_t": 600,
+    "virgin_co2_t_per_t": 0.6,
+    "disposal_cost_inr_per_t": 500,
+    "hazard_class": "none",
+    "price_band": [
+      50,
+      250
+    ],
+    "substitutes_for": "biogas digester feedstock (energy crop equivalent)",
+    "note": "Methane-capture pathway avoids uncontrolled venting; perishable, needs quick offtake."
+  },
+  "biogas": {
+    "name": "Biogas (boiler-grade)",
+    "category": "energy",
+    "virgin_price_inr_per_t": 32000,
+    "virgin_co2_t_per_t": 2.9,
+    "disposal_cost_inr_per_t": 0,
+    "hazard_class": "none",
+    "price_band": [
+      14000,
+      20000
+    ],
+    "substitutes_for": "furnace oil / LPG for boiler heating (tonne oil-equivalent basis)",
+    "note": "Seller economics come from tipping/offtake revenue, not disposal avoidance."
+  },
+  "cement_kiln_dust": {
+    "name": "Cement Kiln Dust (CKD)",
+    "category": "process_residue",
+    "virgin_price_inr_per_t": 500,
+    "virgin_co2_t_per_t": 0.15,
+    "disposal_cost_inr_per_t": 200,
+    "hazard_class": "none",
+    "price_band": [
+      50,
+      200
+    ],
+    "substitutes_for": "soil stabiliser / low-grade road aggregate",
+    "note": "Low-value but high-volume; the demonstration cascade's third leg."
+  }
+}

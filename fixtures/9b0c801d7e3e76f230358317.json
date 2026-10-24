@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 320,
+  "volume_t_per_month": 850,
+  "logistics_split": "buyer_pickup",
+  "public_message": "Deal accepted at Rs.320 per tonne, 850\u202ft, buyer pickup.",
+  "private_reasoning": "Urgent disposal, profit above cost, accept buyer's 320 offer.",
+  "confidence": 0.97
+}

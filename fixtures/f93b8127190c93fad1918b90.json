@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 220,
+  "volume_t_per_month": 260,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can supply 260\u202ft/month at Rs\u202f220 per tonne, delivered.",
+  "private_reasoning": "Opening at target price to test buyer's willingness, covering transport cost.",
+  "confidence": 0.85
+}

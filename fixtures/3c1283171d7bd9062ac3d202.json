@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 40,
+  "volume_t_per_month": 90,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can offload 90 tonnes at Rs.40 per tonne, delivery included.",
+  "private_reasoning": "Opening at Rs.40/t to cover transport, aim above floor, test buyer's willingness.",
+  "confidence": 0.9
+}

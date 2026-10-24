@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 1000,
+  "volume_t_per_month": 1100,
+  "logistics_split": "buyer_pickup",
+  "public_message": "We can meet Rs\u202f1000 per tonne for 1100\u202ft, with us handling pickup.",
+  "private_reasoning": "Counter to lower price toward target while matching our volume need; still well below virgin cost.",
+  "confidence": 0.78
+}

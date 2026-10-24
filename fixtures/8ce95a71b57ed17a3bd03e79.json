@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 16500,
+  "volume_t_per_month": 70,
+  "logistics_split": "seller_delivers",
+  "public_message": "Deal accepted at Rs.16,500 per tonne for 70 tonnes, delivered as discussed.",
+  "private_reasoning": "The buyer's offer of Rs.16,500/t is well above our private floor of Rs.13,500/t and ensures we keep the feedstock moving, preserving the critical three\u2011party loop. Accepting the 70\u202ft volume meets their demand and maintains our margins while avoiding disposal costs. This secures the deal and supports the broader supply chain.",
+  "confidence": 0.95
+}

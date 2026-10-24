@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 700,
+  "volume_t_per_month": 170,
+  "logistics_split": "buyer_pickup",
+  "public_message": "We can take 170\u202ft at Rs\u202f700/t, but we\u2019ll handle pickup.",
+  "private_reasoning": "Seller too high; counter near target, reduce volume, shift logistics to lower cost.",
+  "confidence": 0.8
+}

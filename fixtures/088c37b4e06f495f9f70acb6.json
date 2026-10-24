@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 95,
+  "volume_t_per_month": 140,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can agree at Rs.95 per tonne for 140 tonnes, delivery included.",
+  "private_reasoning": "Aim to reduce price further while staying within acceptable range.",
+  "confidence": 0.78
+}

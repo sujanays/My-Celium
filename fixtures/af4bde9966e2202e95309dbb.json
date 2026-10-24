@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 3800,
+  "volume_t_per_month": 80,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can supply 80\u202ft/month of rice husk ash at Rs\u202f3,800 per tonne, delivered.",
+  "private_reasoning": "Anchor high at ask to set reference, test buyer's range, keep logistics simple, aim above floor.",
+  "confidence": 0.9
+}

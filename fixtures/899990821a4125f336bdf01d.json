@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 900,
+  "volume_t_per_month": 180,
+  "logistics_split": "seller_delivers",
+  "public_message": "Hey there! We can offload 180 tonnes of our spent grain each month at Rs.900 per tonne \u2013 sustainable win\u2011win, right?",
+  "private_reasoning": "Opening high to anchor the price near our ask while signaling sustainability value. Aim to negotiate down slowly but stay above floor Rs.550. Expect counter\u2011offer around Rs.750\u2011800. Keep logistics simple with us delivering to their site.",
+  "confidence": 0.92
+}

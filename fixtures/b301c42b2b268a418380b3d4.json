@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 90,
+  "volume_t_per_month": 140,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can agree at Rs.90 per tonne for 140\u202ft, with seller delivery.",
+  "private_reasoning": "Target 80, past deal 100; counter at 90 to close fast while staying below ceiling.",
+  "confidence": 0.7
+}

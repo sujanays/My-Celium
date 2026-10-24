@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 750,
+  "volume_t_per_month": 170,
+  "logistics_split": "seller_delivers",
+  "public_message": "Deal! We'll get the 170\u202ft moving at Rs.750/t, transport on us \u2013 let's lock it in.",
+  "private_reasoning": "The buyer's offer of Rs.750/t for 170\u202ft is well above our private floor of Rs.550/t and avoids the Rs.1,200/t disposal cost. Accepting keeps the closed\u2011loop chain alive, meets the 3\u2011day movement regulation, and preserves cash flow under high urgency. The slight reduction in volume is acceptable given the urgent need to secure the deal.",
+  "confidence": 0.92
+}

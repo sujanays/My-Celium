@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 85,
+  "volume_t_per_month": 150,
+  "logistics_split": "buyer_pickup",
+  "public_message": "We can meet 150\u202ft at Rs\u202f85 per tonne, buyer pickup.",
+  "private_reasoning": "Aim low based on past ~95 deals, target 80, improve margin.",
+  "confidence": 0.85
+}

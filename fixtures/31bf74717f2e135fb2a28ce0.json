@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 380,
+  "volume_t_per_month": 800,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can meet 800\u202ft at Rs\u202f380/t, delivered to your site.",
+  "private_reasoning": "Push price up for better margin while staying within buyer's range.",
+  "confidence": 0.7
+}

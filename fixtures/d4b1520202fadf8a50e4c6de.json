@@ -1,0 +1,6 @@
+{
+  "verdict": "broker_split",
+  "final_price_inr_per_t": 1075,
+  "final_volume_t_per_month": 1100,
+  "reasoning": "The price gap is only ~4.7%, well below the 40% threshold, so a split\u2011the\u2011difference offer at Rs\u202f1075/t for 1100\u202ft/month is fair."
+}

@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 180,
+  "volume_t_per_month": 220,
+  "logistics_split": "buyer_pickup",
+  "public_message": "Deal accepted at Rs\u202f180/t for 220\u202ft, we\u2019ll handle pickup.",
+  "private_reasoning": "Price matches prior deals, well below ceiling, urgency to keep loop alive.",
+  "confidence": 0.97
+}

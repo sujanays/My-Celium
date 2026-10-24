@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 1250,
+  "volume_t_per_month": 1200,
+  "logistics_split": "seller_delivers",
+  "public_message": "We accept your proposal of Rs.1250 per tonne for 1200 tonnes with delivery handled by you.",
+  "private_reasoning": "Seller's price of Rs.1250/t is below our private ceiling of Rs.1300/t and yields total cost (including transport ~Rs.22/t) well under the virgin slag cost of Rs.3200/t. Volume is slightly higher than our target (1100t), but the extra 100t is acceptable given cost advantage. No regulatory issues. Accept to secure supply.",
+  "confidence": 0.96
+}

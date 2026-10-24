@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 750,
+  "volume_t_per_month": 170,
+  "logistics_split": "seller_delivers",
+  "public_message": "Rs.750 per tonne for 170t, and you still handle transport \u2013 take it or leave it.",
+  "private_reasoning": "Seller's ask of Rs.900/t exceeds our ceiling of Rs.850/t, so we must counter. Our target is Rs.650/t; proposing Rs.750/t is a compromise that stays below our max while giving the seller a decent margin. We keep the volume at 170t to match our needs and retain seller-delivered logistics to avoid extra transport cost. This should keep the closed-loop deal alive.",
+  "confidence": 0.8
+}

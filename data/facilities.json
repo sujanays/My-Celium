@@ -1,0 +1,585 @@
+[
+  {
+    "id": "bengaluru_craft_brewery",
+    "name": "Bengaluru Craft Brewing Co.",
+    "cluster": "Peenya/Bengaluru",
+    "lat": 13.028,
+    "lon": 77.52,
+    "industry": "food_beverage",
+    "persona": "Fast-talking founder, obsessed with sustainability optics but watches every rupee.",
+    "urgency": "high",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "spent_brewery_grain",
+        "qty_t_per_month": 180,
+        "purity": 0.9,
+        "ask_price_inr_per_t": 900,
+        "floor_price_inr_per_t": 550,
+        "storage_days": 1
+      }
+    ],
+    "inputs": [
+      {
+        "material": "biogas",
+        "qty_t_per_month": 70,
+        "target_price_inr_per_t": 15500,
+        "ceiling_price_inr_per_t": 19000
+      }
+    ]
+  },
+  {
+    "id": "namma_dairy_feed",
+    "name": "Namma Valley Dairy & Feed Co.",
+    "cluster": "Peenya/Bengaluru",
+    "lat": 13.052,
+    "lon": 77.551,
+    "industry": "food_beverage",
+    "persona": "Blunt, cost-obsessed plant manager, 22 years on the floor. Doesn't trust anyone's first offer.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "dairy_manure_whey",
+        "qty_t_per_month": 220,
+        "purity": 0.8,
+        "ask_price_inr_per_t": 180,
+        "floor_price_inr_per_t": 70,
+        "storage_days": 2
+      }
+    ],
+    "inputs": [
+      {
+        "material": "spent_brewery_grain",
+        "qty_t_per_month": 170,
+        "target_price_inr_per_t": 650,
+        "ceiling_price_inr_per_t": 850
+      }
+    ]
+  },
+  {
+    "id": "greencycle_biogas",
+    "name": "GreenCycle Biogas Energy Pvt Ltd",
+    "cluster": "Peenya/Bengaluru",
+    "lat": 12.998,
+    "lon": 77.578,
+    "industry": "energy",
+    "persona": "Idealistic engineer-founder running on thin margins; will bend on price to keep feedstock flowing.",
+    "urgency": "high",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "biogas",
+        "qty_t_per_month": 75,
+        "purity": 0.95,
+        "ask_price_inr_per_t": 17500,
+        "floor_price_inr_per_t": 13500,
+        "storage_days": 5
+      }
+    ],
+    "inputs": [
+      {
+        "material": "dairy_manure_whey",
+        "qty_t_per_month": 210,
+        "target_price_inr_per_t": 100,
+        "ceiling_price_inr_per_t": 220
+      }
+    ]
+  },
+  {
+    "id": "peenya_foundry",
+    "name": "Peenya Precision Foundry Works",
+    "cluster": "Peenya/Bengaluru",
+    "lat": 13.031,
+    "lon": 77.517,
+    "industry": "metallurgical",
+    "persona": "Old-school owner, deeply skeptical of anything that sounds like a tech pitch.",
+    "urgency": "low",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "foundry_sand",
+        "qty_t_per_month": 300,
+        "purity": 0.85,
+        "ask_price_inr_per_t": 380,
+        "floor_price_inr_per_t": 220,
+        "storage_days": 30
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "hosur_auto_foundry",
+    "name": "Hosur Auto Components Foundry",
+    "cluster": "Hosur",
+    "lat": 12.741,
+    "lon": 77.831,
+    "industry": "metallurgical",
+    "persona": "Efficiency-obsessed operations head, treats every negotiation like a Six Sigma exercise.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "foundry_sand",
+        "qty_t_per_month": 250,
+        "purity": 0.88,
+        "ask_price_inr_per_t": 390,
+        "floor_price_inr_per_t": 230,
+        "storage_days": 30
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "hosur_pavetech",
+    "name": "Hosur PaveTech Construction Blocks",
+    "cluster": "Hosur",
+    "lat": 12.752,
+    "lon": 77.849,
+    "industry": "construction_materials",
+    "persona": "Growth-hungry startup, needs volume fast and will pay a bit more for reliability.",
+    "urgency": "high",
+    "hazard_license": false,
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "foundry_sand",
+        "qty_t_per_month": 450,
+        "target_price_inr_per_t": 260,
+        "ceiling_price_inr_per_t": 360
+      }
+    ]
+  },
+  {
+    "id": "hosur_textile",
+    "name": "Hosur Textile Processing Mills",
+    "cluster": "Hosur",
+    "lat": 12.703,
+    "lon": 77.802,
+    "industry": "textile",
+    "persona": "Compliance-anxious after a CPCB notice last year; wants documented, licensed offtake only.",
+    "urgency": "high",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "textile_dyeing_sludge",
+        "qty_t_per_month": 60,
+        "purity": 0.7,
+        "ask_price_inr_per_t": 50,
+        "floor_price_inr_per_t": -200,
+        "storage_days": 10
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "hosur_aac_cement",
+    "name": "Hosur AAC Blocks & Cement Unit",
+    "cluster": "Hosur",
+    "lat": 12.763,
+    "lon": 77.781,
+    "industry": "cement",
+    "persona": "Technically sharp plant chemist who negotiates on spec sheets, not vibes.",
+    "urgency": "medium",
+    "hazard_license": true,
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "textile_dyeing_sludge",
+        "qty_t_per_month": 70,
+        "target_price_inr_per_t": 100,
+        "ceiling_price_inr_per_t": 250
+      },
+      {
+        "material": "fly_ash",
+        "qty_t_per_month": 500,
+        "target_price_inr_per_t": 350,
+        "ceiling_price_inr_per_t": 550
+      }
+    ]
+  },
+  {
+    "id": "tiruppur_dyeing",
+    "name": "Tiruppur United Dyeing & Processing",
+    "cluster": "Tiruppur",
+    "lat": 11.108,
+    "lon": 77.341,
+    "industry": "textile",
+    "persona": "Overworked EHS officer, just wants this off the books before the next inspection.",
+    "urgency": "high",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "textile_dyeing_sludge",
+        "qty_t_per_month": 90,
+        "purity": 0.65,
+        "ask_price_inr_per_t": 40,
+        "floor_price_inr_per_t": -300,
+        "storage_days": 7
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "tiruppur_cement_coprocess",
+    "name": "Tiruppur Cement Co-Processing Unit",
+    "cluster": "Tiruppur",
+    "lat": 11.061,
+    "lon": 77.298,
+    "industry": "cement",
+    "persona": "Pragmatic kiln operations manager, cares about calorific consistency more than price.",
+    "urgency": "medium",
+    "hazard_license": true,
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "textile_dyeing_sludge",
+        "qty_t_per_month": 100,
+        "target_price_inr_per_t": 90,
+        "ceiling_price_inr_per_t": 220
+      }
+    ]
+  },
+  {
+    "id": "tiruppur_knitwear",
+    "name": "Tiruppur Knitwear Exports Ltd",
+    "cluster": "Tiruppur",
+    "lat": 11.098,
+    "lon": 77.352,
+    "industry": "textile",
+    "persona": "Export-deadline-driven, terse and impatient in every exchange.",
+    "urgency": "low",
+    "hazard_license": false,
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "rice_husk",
+        "qty_t_per_month": 200,
+        "target_price_inr_per_t": 1700,
+        "ceiling_price_inr_per_t": 2100
+      }
+    ]
+  },
+  {
+    "id": "tiruppur_biomass_power",
+    "name": "Tiruppur Captive Biomass Power Unit",
+    "cluster": "Tiruppur",
+    "lat": 11.122,
+    "lon": 77.36,
+    "industry": "energy",
+    "persona": "Numbers-first energy trader, always benchmarking against coal spot price.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "rice_husk",
+        "qty_t_per_month": 300,
+        "target_price_inr_per_t": 1750,
+        "ceiling_price_inr_per_t": 2150
+      }
+    ]
+  },
+  {
+    "id": "jsr_steel_works",
+    "name": "Jamshedpur Integrated Steel Works",
+    "cluster": "Jamshedpur",
+    "lat": 22.803,
+    "lon": 86.185,
+    "industry": "metallurgical",
+    "persona": "Legacy heavy-industry negotiator, formal tone, moves slowly but reliably.",
+    "urgency": "low",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "steel_slag",
+        "qty_t_per_month": 1200,
+        "purity": 0.9,
+        "ask_price_inr_per_t": 1250,
+        "floor_price_inr_per_t": 750,
+        "storage_days": 60
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "jsr_ggbs_cement",
+    "name": "Jamshedpur GGBS Cement Plant",
+    "cluster": "Jamshedpur",
+    "lat": 22.786,
+    "lon": 86.203,
+    "industry": "cement",
+    "persona": "Data-driven procurement lead, runs everything through a cost model before replying.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "cement_kiln_dust",
+        "qty_t_per_month": 150,
+        "purity": 0.75,
+        "ask_price_inr_per_t": 130,
+        "floor_price_inr_per_t": 60,
+        "storage_days": 45
+      }
+    ],
+    "inputs": [
+      {
+        "material": "steel_slag",
+        "qty_t_per_month": 1100,
+        "target_price_inr_per_t": 900,
+        "ceiling_price_inr_per_t": 1300
+      },
+      {
+        "material": "fly_ash",
+        "qty_t_per_month": 800,
+        "target_price_inr_per_t": 350,
+        "ceiling_price_inr_per_t": 580
+      }
+    ]
+  },
+  {
+    "id": "jsr_road_construction",
+    "name": "Jamshedpur Road Construction Corp",
+    "cluster": "Jamshedpur",
+    "lat": 22.818,
+    "lon": 86.168,
+    "industry": "construction_materials",
+    "persona": "Government-contract project manager, risk-averse, wants paper trails on everything.",
+    "urgency": "low",
+    "hazard_license": false,
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "cement_kiln_dust",
+        "qty_t_per_month": 140,
+        "target_price_inr_per_t": 80,
+        "ceiling_price_inr_per_t": 190
+      },
+      {
+        "material": "foundry_sand",
+        "qty_t_per_month": 200,
+        "target_price_inr_per_t": 250,
+        "ceiling_price_inr_per_t": 350
+      }
+    ]
+  },
+  {
+    "id": "jsr_thermal_power",
+    "name": "Jamshedpur Thermal Power Station",
+    "cluster": "Jamshedpur",
+    "lat": 22.751,
+    "lon": 86.221,
+    "industry": "energy",
+    "persona": "Utility bureaucrat, slow to respond but rarely walks away once engaged.",
+    "urgency": "low",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "fly_ash",
+        "qty_t_per_month": 900,
+        "purity": 0.8,
+        "ask_price_inr_per_t": 420,
+        "floor_price_inr_per_t": 220,
+        "storage_days": 90
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "hospet_steel",
+    "name": "Hospet Steel & Alloys Ltd",
+    "cluster": "Bellary-Hospet",
+    "lat": 15.269,
+    "lon": 76.387,
+    "industry": "metallurgical",
+    "persona": "Regional player trying to prove itself against the bigger steel plants, eager to close deals.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "steel_slag",
+        "qty_t_per_month": 700,
+        "purity": 0.87,
+        "ask_price_inr_per_t": 1180,
+        "floor_price_inr_per_t": 700,
+        "storage_days": 45
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "bellary_cement",
+    "name": "Bellary Cement Works",
+    "cluster": "Bellary-Hospet",
+    "lat": 15.14,
+    "lon": 76.921,
+    "industry": "cement",
+    "persona": "Aggressive negotiator, always opens low, expects to be countered.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "steel_slag",
+        "qty_t_per_month": 650,
+        "target_price_inr_per_t": 850,
+        "ceiling_price_inr_per_t": 1250
+      },
+      {
+        "material": "fly_ash",
+        "qty_t_per_month": 400,
+        "target_price_inr_per_t": 330,
+        "ceiling_price_inr_per_t": 560
+      }
+    ]
+  },
+  {
+    "id": "bellary_thermal_power",
+    "name": "Bellary Thermal Power Station",
+    "cluster": "Bellary-Hospet",
+    "lat": 15.162,
+    "lon": 76.901,
+    "industry": "energy",
+    "persona": "Overwhelmed ash-pond manager desperate to offload volume before monsoon.",
+    "urgency": "high",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "fly_ash",
+        "qty_t_per_month": 850,
+        "purity": 0.78,
+        "ask_price_inr_per_t": 400,
+        "floor_price_inr_per_t": 210,
+        "storage_days": 90
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "hospet_flyash_brick",
+    "name": "Hospet Fly Ash Brick Unit",
+    "cluster": "Bellary-Hospet",
+    "lat": 15.278,
+    "lon": 76.402,
+    "industry": "construction_materials",
+    "persona": "Small-scale family business, friendly but very price-sensitive.",
+    "urgency": "high",
+    "hazard_license": false,
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "fly_ash",
+        "qty_t_per_month": 500,
+        "target_price_inr_per_t": 320,
+        "ceiling_price_inr_per_t": 520
+      }
+    ]
+  },
+  {
+    "id": "mundra_thermal_power",
+    "name": "Mundra Thermal Power Station",
+    "cluster": "Mundra",
+    "lat": 22.839,
+    "lon": 69.721,
+    "industry": "energy",
+    "persona": "Large-scale utility operator, treats waste offtake as a routine procurement line item.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "fly_ash",
+        "qty_t_per_month": 1500,
+        "purity": 0.83,
+        "ask_price_inr_per_t": 440,
+        "floor_price_inr_per_t": 240,
+        "storage_days": 120
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "mundra_cement_grinding",
+    "name": "Mundra Cement Grinding Unit",
+    "cluster": "Mundra",
+    "lat": 22.801,
+    "lon": 69.752,
+    "industry": "cement",
+    "persona": "Port-side logistics-first buyer, cares more about delivery reliability than shaving the last rupee.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "fly_ash",
+        "qty_t_per_month": 1300,
+        "target_price_inr_per_t": 360,
+        "ceiling_price_inr_per_t": 580
+      },
+      {
+        "material": "lime_sludge",
+        "qty_t_per_month": 280,
+        "target_price_inr_per_t": 150,
+        "ceiling_price_inr_per_t": 340
+      }
+    ]
+  },
+  {
+    "id": "mundra_agro_rice",
+    "name": "Mundra Agro & Rice Processing",
+    "cluster": "Mundra",
+    "lat": 22.858,
+    "lon": 69.685,
+    "industry": "agro_processing",
+    "persona": "Seasonal-harvest operator, urgency spikes hard right after harvest season.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "rice_husk",
+        "qty_t_per_month": 400,
+        "purity": 0.92,
+        "ask_price_inr_per_t": 1900,
+        "floor_price_inr_per_t": 1550,
+        "storage_days": 60
+      },
+      {
+        "material": "rice_husk_ash",
+        "qty_t_per_month": 80,
+        "purity": 0.9,
+        "ask_price_inr_per_t": 3800,
+        "floor_price_inr_per_t": 2100,
+        "storage_days": 90
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "mundra_paper_chem",
+    "name": "Mundra Paper & Chemicals Mill",
+    "cluster": "Mundra",
+    "lat": 22.812,
+    "lon": 69.701,
+    "industry": "paper_chemicals",
+    "persona": "Chemistry-first procurement head, will pay a premium for consistent silica purity.",
+    "urgency": "medium",
+    "hazard_license": false,
+    "outputs": [
+      {
+        "material": "lime_sludge",
+        "qty_t_per_month": 260,
+        "purity": 0.8,
+        "ask_price_inr_per_t": 220,
+        "floor_price_inr_per_t": 110,
+        "storage_days": 30
+      }
+    ],
+    "inputs": [
+      {
+        "material": "rice_husk_ash",
+        "qty_t_per_month": 75,
+        "target_price_inr_per_t": 2500,
+        "ceiling_price_inr_per_t": 4200
+      }
+    ]
+  }
+]

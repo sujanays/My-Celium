@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 700,
+  "volume_t_per_month": 170,
+  "logistics_split": "buyer_pickup",
+  "public_message": "Deal, 170\u202ft at Rs\u202f700/t, you handle pickup.",
+  "private_reasoning": "Price exceeds floor, secures loop and avoids disposal cost; accept.",
+  "confidence": 0.95
+}

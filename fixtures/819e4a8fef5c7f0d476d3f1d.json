@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 17500,
+  "volume_t_per_month": 75,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can supply 75 tonnes per month at Rs.17,500 per tonne, delivered to your site.",
+  "private_reasoning": "Opening at our target price of Rs.17,500/t to signal value while keeping room to negotiate down if needed. We\u2019ll bear transport (9km, Rs.4,208 for 70t) and aim for a quick agreement to keep the closed-loop chain alive.",
+  "confidence": 0.92
+}

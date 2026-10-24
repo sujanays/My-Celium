@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 900,
+  "volume_t_per_month": 180,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can offload 180\u202ft at Rs\u202f900\u202fper tonne, delivered fresh to you.",
+  "private_reasoning": "Anchor high, signal value, leave room to negotiate later.",
+  "confidence": 0.92
+}

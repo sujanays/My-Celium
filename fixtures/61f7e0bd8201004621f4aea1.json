@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 1180,
+  "volume_t_per_month": 700,
+  "logistics_split": "seller_delivers",
+  "public_message": "We propose Rs.1180 per tonne for 700 tonnes monthly, with delivery from our plant.",
+  "private_reasoning": "Anchor high to gauge buyer's limit, keep floor hidden, aim for swift agreement.",
+  "confidence": 0.9
+}

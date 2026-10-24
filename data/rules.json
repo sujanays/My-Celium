@@ -1,0 +1,23 @@
+{
+  "fly_ash_300km_radius": {
+    "material": "fly_ash",
+    "type": "max_distance_km",
+    "limit_km": 300,
+    "citation": "MoEFCC Fly Ash Notification, 2009 (as amended 2016 & 2021) - Rule 3: mandatory utilisation of fly ash within a 300 km radius of the thermal power station for construction and ash-based products.",
+    "verdict_on_violation": "REJECTED"
+  },
+  "hazardous_waste_license_required": {
+    "hazard_class": "hazardous",
+    "type": "receiver_requires_license",
+    "required_flag": "hazard_license",
+    "citation": "Hazardous and Other Wastes (Management & Transboundary Movement) Rules, 2016 - receiving facility must hold a valid CPCB/SPCB hazardous-waste handling authorisation (co-processing or TSDF).",
+    "verdict_on_violation": "REJECTED"
+  },
+  "perishable_storage_window": {
+    "type": "max_storage_days",
+    "applies_to_materials": ["spent_brewery_grain", "dairy_manure_whey"],
+    "limit_days": 3,
+    "citation": "Internal food-safety/perishability constraint (not a statutory rule) - spent grain and dairy effluent ferment/spoil rapidly, forcing tight delivery windows.",
+    "verdict_on_violation": "WARNING"
+  }
+}
