@@ -214,7 +214,7 @@
         "qty_t_per_month": 90,
         "purity": 0.65,
         "ask_price_inr_per_t": 40,
-        "floor_price_inr_per_t": -300,
+        "floor_price_inr_per_t": 300,
         "storage_days": 7
       }
     ],
@@ -581,5 +581,26 @@
         "ceiling_price_inr_per_t": 4200
       }
     ]
+  },
+  {
+    "outputs": [],
+    "inputs": [
+      {
+        "material": "steel_slag",
+        "qty_t_per_month": 100.0,
+        "target_price_inr_per_t": 260.0,
+        "ceiling_price_inr_per_t": 300.0
+      }
+    ],
+    "id": "123",
+    "name": "Bengaluru Craft Brewing Co.",
+    "cluster": "Peenya/Bengaluru",
+    "lat": 13.032466,
+    "lon": 77.5128,
+    "industry": "cement",
+    "persona": "Data-driven procurement lead",
+    "urgency": "medium",
+    "hazard_license": false
   }
+
 ]

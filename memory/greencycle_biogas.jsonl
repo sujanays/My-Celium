@@ -33,3 +33,15 @@
 {"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "biogas", "outcome": "deal_closed", "final_price": 16200, "rounds": 2, "human_note": null}
 {"counterparty_id": "namma_dairy_feed", "counterparty_name": "Namma Valley Dairy & Feed Co.", "material": "dairy_manure_whey", "outcome": "deal_closed", "final_price": 180, "rounds": 2, "human_note": null}
 {"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "biogas", "outcome": "deal_closed", "final_price": 15500, "rounds": 3, "human_note": null}
+{"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "biogas", "outcome": "deal_closed", "final_price": 16500, "rounds": 2, "human_note": null}
+{"counterparty_id": "namma_dairy_feed", "counterparty_name": "Namma Valley Dairy & Feed Co.", "material": "dairy_manure_whey", "outcome": "deal_closed", "final_price": 160, "rounds": 4, "human_note": null}
+{"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "biogas", "outcome": "deal_closed", "final_price": 16800, "rounds": 2, "human_note": null}
+{"counterparty_id": "namma_dairy_feed", "counterparty_name": "Namma Valley Dairy & Feed Co.", "material": "dairy_manure_whey", "outcome": "deal_closed", "final_price": 175, "rounds": 2, "human_note": null}
+{"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "biogas", "outcome": "deal_closed", "final_price": 16800, "rounds": 2, "human_note": null}
+{"counterparty_id": "namma_dairy_feed", "counterparty_name": "Namma Valley Dairy & Feed Co.", "material": "dairy_manure_whey", "outcome": "deal_closed", "final_price": 165, "rounds": 4, "human_note": null}
+{"counterparty_id": "namma_dairy_feed", "counterparty_name": "Namma Valley Dairy & Feed Co.", "material": "dairy_manure_whey", "outcome": "deal_closed", "final_price": 162, "rounds": 4, "human_note": null}
+{"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "biogas", "outcome": "deal_closed", "final_price": 15500, "rounds": 3, "human_note": null}
+{"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "biogas", "outcome": "human_rejected", "final_price": null, "rounds": 0, "human_note": "price too low"}
+{"counterparty_id": "namma_dairy_feed", "counterparty_name": "Namma Valley Dairy & Feed Co.", "material": "dairy_manure_whey", "outcome": "deal_closed", "final_price": 155, "rounds": 3, "human_note": null}
+{"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "biogas", "outcome": "deal_closed", "final_price": 15500, "rounds": 3, "human_note": null}
+{"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "biogas", "outcome": "human_rejected", "final_price": null, "rounds": 0, "human_note": "price too low"}

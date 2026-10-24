@@ -3,7 +3,7 @@
   "price_inr_per_t": 15500,
   "volume_t_per_month": 70,
   "logistics_split": "seller_delivers",
-  "public_message": "We can do 70\u202ft at Rs\u202f15,500 per tonne, seller delivers.",
-  "private_reasoning": "Target 15500, leverage past 16000 deals, push price down while matching volume need.",
-  "confidence": 0.82
+  "public_message": "We can take 70\u202ft/month at Rs\u202f15,500 per tonne, delivered, please confirm.",
+  "private_reasoning": "Leverage past 15.5k deals, lower volume, keep seller delivery to avoid transport cost.",
+  "confidence": 0.9
 }

@@ -1,0 +1,4 @@
+{"counterparty_id": "jsr_steel_works", "counterparty_name": "Jamshedpur Integrated Steel Works", "material": "steel_slag", "outcome": "deal_closed", "final_price": 1135, "rounds": 5, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 170.0, "rounds": 4, "human_note": null}
+{"counterparty_id": "hospet_steel", "counterparty_name": "Hospet Steel & Alloys Ltd", "material": "steel_slag", "outcome": "deal_closed", "final_price": 1150, "rounds": 5, "human_note": null}
+{"counterparty_id": "jsr_road_construction", "counterparty_name": "Jamshedpur Road Construction Corp", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 162, "rounds": 4, "human_note": null}

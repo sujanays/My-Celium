@@ -1,9 +1,9 @@
 {
-  "action": "counter",
-  "price_inr_per_t": 16000,
+  "action": "accept",
+  "price_inr_per_t": 15500,
   "volume_t_per_month": 70,
   "logistics_split": "seller_delivers",
-  "public_message": "We can meet at Rs\u202f16,000 per tonne for 70\u202ft, seller delivers.",
-  "private_reasoning": "Counter at 16000 to match past deals, keep margin, accept buyer volume.",
-  "confidence": 0.85
+  "public_message": "Deal confirmed at Rs\u202f15,500 per tonne for 70\u202ft/month, delivered.",
+  "private_reasoning": "Accepting above floor to keep loop alive, price acceptable.",
+  "confidence": 0.97
 }

@@ -1,0 +1,6 @@
+{
+  "verdict": "broker_split",
+  "final_price_inr_per_t": 1135,
+  "final_volume_t_per_month": 100,
+  "reasoning": "The price gap is only 2.7% (<40%), so a split\u2011the\u2011difference price of Rs\u202f1135/t with the buyer's required volume of 100\u202ft/month is proposed."
+}

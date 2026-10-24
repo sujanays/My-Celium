@@ -2,3 +2,5 @@
 {"counterparty_id": "jsr_ggbs_cement", "counterparty_name": "Jamshedpur GGBS Cement Plant", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 100, "rounds": 4, "human_note": null}
 {"counterparty_id": "jsr_ggbs_cement", "counterparty_name": "Jamshedpur GGBS Cement Plant", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 95, "rounds": 5, "human_note": null}
 {"counterparty_id": "jsr_ggbs_cement", "counterparty_name": "Jamshedpur GGBS Cement Plant", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 95, "rounds": 4, "human_note": null}
+{"counterparty_id": "jb_cmt", "counterparty_name": "JB Cement Work", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 170.0, "rounds": 4, "human_note": null}
+{"counterparty_id": "jb_cmt", "counterparty_name": "JB Cement Work", "material": "cement_kiln_dust", "outcome": "deal_closed", "final_price": 162, "rounds": 4, "human_note": null}

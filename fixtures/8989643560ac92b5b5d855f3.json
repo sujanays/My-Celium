@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 1120,
+  "volume_t_per_month": 100,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can proceed at Rs1120 per tonne for 100\u202ft, with seller delivery.",
+  "private_reasoning": "Aim for target price and correct volume; seller's price above target, so push lower and limit quantity.",
+  "confidence": 0.85
+}

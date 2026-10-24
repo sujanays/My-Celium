@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 155,
+  "volume_t_per_month": 210,
+  "logistics_split": "seller_delivers",
+  "public_message": "Fine, 155\u202fRs/t for 210\u202ft, we'll deliver.",
+  "private_reasoning": "Offer exceeds floor and avoids loop collapse; profit acceptable after transport, so accept.",
+  "confidence": 0.93
+}

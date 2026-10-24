@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 162,
+  "volume_t_per_month": 100,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can meet your needs at Rs.162 per tonne, delivered.",
+  "private_reasoning": "Buyer too low; counter just above floor to stay profitable.",
+  "confidence": 0.85
+}

@@ -1,9 +1,9 @@
 {
-  "action": "counter",
-  "price_inr_per_t": 15500,
-  "volume_t_per_month": 70,
+  "action": "accept",
+  "price_inr_per_t": 16500,
+  "volume_t_per_month": 75,
   "logistics_split": "seller_delivers",
-  "public_message": "We can do 70\u202ft at Rs\u202f15,500 per tonne, delivered as proposed.",
-  "private_reasoning": "Aim below past deal range to improve margin, still within ceiling; keep volume and logistics same.",
-  "confidence": 0.86
+  "public_message": "Deal, 75\u202ft at Rs\u202f16,500, delivery works for us.",
+  "private_reasoning": "Price under ceiling, quick close ensures loop stability, past deals at this level.",
+  "confidence": 0.8
 }

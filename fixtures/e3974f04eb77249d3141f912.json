@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 650,
+  "volume_t_per_month": 170,
+  "logistics_split": "seller_delivers",
+  "public_message": "Deal\u2014Rs\u202f650\u202fper tonne for 170\u202ft, delivery included.",
+  "private_reasoning": "Price above floor, matches buyer, ensures loop closure.",
+  "confidence": 0.97
+}

@@ -3,7 +3,7 @@
   "price_inr_per_t": 680,
   "volume_t_per_month": 180,
   "logistics_split": "seller_delivers",
-  "public_message": "We can supply 180t/month at Rs.680 per tonne, delivered to your site.",
-  "private_reasoning": "Open near past deal price to speed loop, still above floor.",
-  "confidence": 0.9
+  "public_message": "We can offload 180\u202ft/month at Rs\u202f680 per tonne, delivery included.",
+  "private_reasoning": "Start near past deal range to secure loop, leaving margin above floor.",
+  "confidence": 0.8
 }
