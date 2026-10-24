@@ -1,6 +1,7 @@
 """
 llm.py -- the ONE entry point every agent call goes through. Handles:
   - .env loading (no extra dependency)
+  - GROQ_API_KEY multi-key fallback rotation (if one hits rate limit, switches to the next)
   - provider fail-over chain (Groq -> Gemini -> Ollama -> xAI Grok), all OpenAI-wire-compatible
   - strict JSON-schema output with one repair retry
   - a client-side rate limiter (free tiers throttle hard)
@@ -55,6 +56,17 @@ _lock = threading.Lock()
 _MIN_INTERVAL_S = 0.15  # spacing per provider to avoid free-tier 429s
 _sem = threading.Semaphore(6)  # cap concurrent in-flight calls
 
+# Track key rotation index across threads
+_groq_key_index = 0
+
+
+def _get_api_keys(env_var: str) -> list[str]:
+    """Helper to parse single or multiple comma-separated API keys from environment."""
+    raw = os.environ.get(env_var, "").strip()
+    if not raw:
+        return []
+    return [k.strip() for k in raw.split(",") if k.strip()]
+
 
 def _hash_key(system: str, user: str, schema_name: str) -> str:
     h = hashlib.sha256(f"{schema_name}|{system}|{user}".encode("utf-8")).hexdigest()[:24]
@@ -104,17 +116,34 @@ def _save_fixture(key: str, result: dict):
         pass  # never let fixture recording break a live demo
 
 
-def _client_for(provider: dict) -> OpenAI | None:
+def _client_for(provider: dict, key_offset: int = 0) -> OpenAI | None:
+    global _groq_key_index
     if provider["api_key_env"]:
-        api_key = os.environ.get(provider["api_key_env"], "").strip()
-        if not api_key:
+        keys = _get_api_keys(provider["api_key_env"])
+        if not keys:
             return None
+        
+        # Multi-key rotation support for GROQ_API_KEY
+        if provider["api_key_env"] == "GROQ_API_KEY":
+            with _lock:
+                idx = (_groq_key_index + key_offset) % len(keys)
+                api_key = keys[idx]
+        else:
+            api_key = keys[0]
     else:
         api_key = "not-needed"
-    # Short timeout + zero SDK-internal retries: a missing local Ollama server (or any dead
-    # provider) must fail FAST so the chain moves on, not stall a live demo for 10+ seconds.
+
     timeout = 4.0 if provider["name"] == "ollama" else 20.0
     return OpenAI(base_url=provider["base_url"], api_key=api_key, timeout=timeout, max_retries=0)
+
+
+def _rotate_groq_key():
+    """Rotates to the next GROQ_API_KEY in the comma-separated sequence."""
+    global _groq_key_index
+    keys = _get_api_keys("GROQ_API_KEY")
+    if len(keys) > 1:
+        with _lock:
+            _groq_key_index = (_groq_key_index + 1) % len(keys)
 
 
 def _throttle(provider_name: str):
@@ -127,17 +156,36 @@ def _throttle(provider_name: str):
 
 
 def _call_provider(provider: dict, system: str, user: str, temperature: float) -> str:
-    client = _client_for(provider)
-    if client is None:
-        raise RuntimeError(f"{provider['name']}: no API key set")
-    _throttle(provider["name"])
-    resp = client.chat.completions.create(
-        model=provider["model"],
-        temperature=temperature,
-        messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
-        response_format={"type": "json_object"},
-    )
-    return resp.choices[0].message.content
+    # Handle multi-key fallback logic specifically for Groq API keys
+    groq_keys = _get_api_keys("GROQ_API_KEY") if provider["name"] == "groq" else []
+    max_key_attempts = max(1, len(groq_keys)) if provider["name"] == "groq" else 1
+
+    last_error = None
+    for attempt_idx in range(max_key_attempts):
+        client = _client_for(provider, key_offset=attempt_idx)
+        if client is None:
+            raise RuntimeError(f"{provider['name']}: no API key set")
+        
+        _throttle(provider["name"])
+        try:
+            resp = client.chat.completions.create(
+                model=provider["model"],
+                temperature=temperature,
+                messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+                response_format={"type": "json_object"},
+            )
+            return resp.choices[0].message.content
+        except RateLimitError as e:
+            last_error = e
+            if provider["name"] == "groq" and len(groq_keys) > 1:
+                _rotate_groq_key()
+                continue
+            raise e
+        except Exception as e:
+            raise e
+
+    if last_error:
+        raise last_error
 
 
 def chat_json(system: str, user: str, schema: dict, schema_name: str = "generic",
@@ -158,7 +206,7 @@ def chat_json(system: str, user: str, schema: dict, schema_name: str = "generic"
             cached["_meta"] = {"provider": "fixture", "model": None, "elapsed_ms": 0, "cache_hit": True}
             return cached
         raise RuntimeError(f"REPLAY MODE: no fixture recorded for key {key} ({schema_name}). "
-                            f"Run scripts/record_demo.py in live mode first.")
+                           f"Run scripts/record_demo.py in live mode first.")
 
     last_err = None
     errors_by_provider: dict[str, str] = {}
@@ -195,7 +243,7 @@ def chat_json(system: str, user: str, schema: dict, schema_name: str = "generic"
                 jsonschema.validate(data, schema)
                 _save_fixture(key, data)
                 data["_meta"] = {"provider": provider["name"], "model": provider["model"],
-                                  "elapsed_ms": round((time.time() - t_call_start) * 1000), "cache_hit": False}
+                                 "elapsed_ms": round((time.time() - t_call_start) * 1000), "cache_hit": False}
                 return data
             except (json.JSONDecodeError, jsonschema.ValidationError) as e:
                 errors_by_provider[provider["name"]] = f"{type(e).__name__} on first reply: {e}. Raw: {raw[:200]!r}"
@@ -211,8 +259,8 @@ def chat_json(system: str, user: str, schema: dict, schema_name: str = "generic"
                     jsonschema.validate(data2, schema)
                     _save_fixture(key, data2)
                     data2["_meta"] = {"provider": provider["name"], "model": provider["model"],
-                                       "elapsed_ms": round((time.time() - t_call_start) * 1000),
-                                       "cache_hit": False, "repaired": True}
+                                      "elapsed_ms": round((time.time() - t_call_start) * 1000),
+                                      "cache_hit": False, "repaired": True}
                     return data2
                 except Exception as e2:
                     last_err = e2
