@@ -1,9 +1,9 @@
 {
-  "action": "counter",
+  "action": "accept",
   "price_inr_per_t": 15800,
-  "volume_t_per_month": 70,
+  "volume_t_per_month": 75,
   "logistics_split": "seller_delivers",
-  "public_message": "Rs\u202f15,800 per tonne for 70\u202ft, delivery as agreed.",
-  "private_reasoning": "Price acceptable, need correct volume; counter with same price, lower volume to match needs.",
+  "public_message": "Deal \u2013 75\u202ft at Rs\u202f15,800, delivered, thank you!",
+  "private_reasoning": "Price below ceiling, loop critical, accept to lock deal",
   "confidence": 0.97
 }

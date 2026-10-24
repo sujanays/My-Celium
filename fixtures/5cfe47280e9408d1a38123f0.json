@@ -3,7 +3,7 @@
   "price_inr_per_t": 16500,
   "volume_t_per_month": 75,
   "logistics_split": "seller_delivers",
-  "public_message": "We can supply 75\u202ft/month at Rs\u202f16,500 per tonne, with delivery included.",
-  "private_reasoning": "Open near prior successful price to speed deal, still above floor.",
+  "public_message": "We can supply 75\u202ft/month at Rs\u202f16,500 per tonne, delivered to your site.",
+  "private_reasoning": "Open near prior deal range to expedite agreement, still above floor.",
   "confidence": 0.85
 }

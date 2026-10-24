@@ -3,7 +3,7 @@
   "price_inr_per_t": 660,
   "volume_t_per_month": 170,
   "logistics_split": "seller_delivers",
-  "public_message": "660 per tonne, 170t, deliver it.",
-  "private_reasoning": "Push below target using past deal range, keep seller delivery to avoid transport hassle.",
+  "public_message": "720 is too high; we\u2019ll take 170\u202ft at \u20b9660/t, seller\u2011delivers.",
+  "private_reasoning": "Target past deal price 660, below ceiling, match needed volume, keep seller delivery for simplicity.",
   "confidence": 0.78
 }

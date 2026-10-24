@@ -8,9 +8,7 @@ let currentDiscovery = null;
 let previousDiscovery = null;
 let activeSource = null;
 let lastSelectedMatch = null; // {type, payload} -- for the "renegotiate under shock" beat
-let negotiationGen = 0; // bumped on every new negotiation start; lets in-flight packet
-                         // animations from an abandoned match self-cancel if a judge
-                         // clicks a different match before the previous one finished
+let negotiationGen = 0; // bumped on every new negotiation start
 let arcSeq = 0; // unique id counter for arc GeoJSON features/layers
 
 const INDUSTRY_COLOR = {
@@ -52,92 +50,84 @@ function initMap() {
   }
   try {
     map = new maplibregl.Map({
-    container: "map",
-    style: {
-      version: 8,
-      sources: {
-        // Esri Dark Gray Canvas -- verified keyless and unwatermarked (CARTO's free
-        // basemaps now stamp "API KEY REQUIRED" into every tile pixel). Note the tile
-        // path is {z}/{y}/{x} -- Esri orders row before column, the reverse of the
-        // {z}/{x}/{y} convention CARTO/OSM/MapLibre demo tiles use.
-        "esri-dark-base": {
-          type: "raster",
-          tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"],
-          tileSize: 256, maxzoom: 16,
-          attribution: "Esri, HERE, Garmin, FAO, NOAA, USGS",
+      container: "map",
+      style: {
+        version: 8,
+        sources: {
+          "esri-dark-base": {
+            type: "raster",
+            tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"],
+            tileSize: 256, maxzoom: 16,
+            attribution: "Esri, HERE, Garmin, FAO, NOAA, USGS",
+          },
+          "esri-dark-labels": {
+            type: "raster",
+            tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}"],
+            tileSize: 256, maxzoom: 16,
+            attribution: "",
+          },
         },
-        "esri-dark-labels": {
-          type: "raster",
-          tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}"],
-          tileSize: 256, maxzoom: 16,
-          attribution: "",
+        layers: [
+          { id: "esri-dark-base-layer", type: "raster", source: "esri-dark-base" },
+          { id: "esri-dark-labels-layer", type: "raster", source: "esri-dark-labels" },
+        ],
+      },
+      center: [78.5, 18.5],
+      zoom: 4.4,
+      pitch: 0,
+      bearing: 0,
+      dragRotate: false,
+      attributionControl: true,
+    });
+    map.touchZoomRotate.disableRotation();
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+
+    map.on("error", (e) => {
+      console.error("MapLibre error:", e);
+      const msg = (e && e.error && e.error.message) ? e.error.message : JSON.stringify(e).slice(0, 200);
+      showFatalBanner("Map error: " + msg);
+    });
+
+    function addArcsLayer() {
+      if (map.getSource("arcs")) return;
+      map.addSource("arcs", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+
+      map.addLayer({
+        id: "arcs-glow", type: "line", source: "arcs",
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: {
+          "line-color": ["get", "color"],
+          "line-width": ["*", ["get", "width"], 5],
+          "line-blur": 6,
+          "line-opacity": ["*", ["get", "opacity"], 0.45],
         },
-      },
-      layers: [
-        { id: "esri-dark-base-layer", type: "raster", source: "esri-dark-base" },
-        { id: "esri-dark-labels-layer", type: "raster", source: "esri-dark-labels" },
-      ],
-    },
-    center: [78.5, 18.5],
-    zoom: 4.4,
-    pitch: 0,
-    bearing: 0,
-    dragRotate: false,
-    attributionControl: true,
-  });
-  map.touchZoomRotate.disableRotation(); // keep pinch-zoom on touch, just no rotation
-  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
-
-  map.on("error", (e) => {
-    console.error("MapLibre error:", e);
-    const msg = (e && e.error && e.error.message) ? e.error.message : JSON.stringify(e).slice(0, 200);
-    showFatalBanner("Map error: " + msg);
-  });
-
-  function addArcsLayer() {
-    if (map.getSource("arcs")) return;
-    map.addSource("arcs", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
-    // Glow duplicate underneath: wider + blurred, same data-driven color as the crisp
-    // foreground line. (line-gradient can't vary per-feature in MapLibre, so this
-    // two-layer trick is how per-arc-colored neon glow is done.)
-    map.addLayer({
-      id: "arcs-glow", type: "line", source: "arcs",
-      layout: { "line-cap": "round", "line-join": "round" },
-      paint: {
-        "line-color": ["get", "color"],
-        "line-width": ["*", ["get", "width"], 5],
-        "line-blur": 6,
-        "line-opacity": ["*", ["get", "opacity"], 0.45],
-      },
-    });
-    map.addLayer({
-      id: "arcs-layer", type: "line", source: "arcs",
-      layout: { "line-cap": "round", "line-join": "round" },
-      paint: {
-        "line-color": ["get", "color"],
-        "line-width": ["get", "width"],
-        "line-opacity": ["get", "opacity"],
-      },
-    });
-    map.addSource("packets", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
-    map.addLayer({
-      id: "packets-glow", type: "circle", source: "packets",
-      paint: { "circle-radius": 11, "circle-color": ["get", "color"], "circle-blur": 1, "circle-opacity": 0.55 },
-    });
-    map.addLayer({
-      id: "packets-layer", type: "circle", source: "packets",
-      paint: { "circle-radius": 4, "circle-color": "#ffffff", "circle-opacity": 0.95 },
-    });
-    setupHoverPopup();
-    startBreathing();
-  }
+      });
+      map.addLayer({
+        id: "arcs-layer", type: "line", source: "arcs",
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: {
+          "line-color": ["get", "color"],
+          "line-width": ["get", "width"],
+          "line-opacity": ["get", "opacity"],
+        },
+      });
+      map.addSource("packets", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+      map.addLayer({
+        id: "packets-glow", type: "circle", source: "packets",
+        paint: { "circle-radius": 11, "circle-color": ["get", "color"], "circle-blur": 1, "circle-opacity": 0.55 },
+      });
+      map.addLayer({
+        id: "packets-layer", type: "circle", source: "packets",
+        paint: { "circle-radius": 4, "circle-color": "#ffffff", "circle-opacity": 0.95 },
+      });
+      setupHoverPopup();
+      startBreathing();
+    }
 
     return new Promise((resolve) => {
       let done = false;
       const finish = () => { if (done) return; done = true; try { addArcsLayer(); } catch (e) { console.error(e); } resolve(); };
       map.on("load", finish);
-      // Safety net: never let a style/tile hiccup hang boot() forever -- markers can
-      // still be placed even if the raster basemap itself is slow or fails.
       setTimeout(finish, 4000);
     });
   } catch (e) {
@@ -165,9 +155,8 @@ function volumeOf(f) {
 }
 
 function renderFacilities(facilities) {
-  facilities.forEach((f) => { facilitiesById[f.id] = f; }); // always index, even without a map
+  facilities.forEach((f) => { facilitiesById[f.id] = f; });
   if (!map) {
-    // WebGL/CDN unavailable -- degrade to a plain list so Discover/negotiate still work.
     const panel = document.getElementById("sidepanel");
     panel.style.display = "block";
     panel.innerHTML = "<h3>Facilities (map unavailable)</h3>" + facilities.map((f) =>
@@ -206,7 +195,7 @@ function renderFacilities(facilities) {
 }
 
 // ---------------------------------------------------------------- arcs (GeoJSON line layer)
-let arcFeatures = {}; // id -> {feature, fullCoords}
+let arcFeatures = {};
 
 function curvedLngLats(a, b, bend) {
   if (bend === undefined) bend = 0.18;
@@ -219,7 +208,7 @@ function curvedLngLats(a, b, bend) {
   for (let t = 0; t <= 1.0001; t += 0.025) {
     const lat = (1 - t) * (1 - t) * lat1 + 2 * (1 - t) * t * ctrlLat + t * t * lat2;
     const lon = (1 - t) * (1 - t) * lon1 + 2 * (1 - t) * t * ctrlLon + t * t * lon2;
-    pts.push([lon, lat]); // GeoJSON is [lng, lat]
+    pts.push([lon, lat]);
   }
   return pts;
 }
@@ -255,7 +244,6 @@ async function drawArc(fromId, toId, opts) {
   };
   syncArcsSource();
 
-  // Grow the line from 1 point to full length over ~700ms -- the "filament growing" effect.
   const steps = fullCoords.length;
   const durationMs = opts.durationMs || 700;
   const stepMs = durationMs / steps;
@@ -271,8 +259,6 @@ async function drawArc(fromId, toId, opts) {
 function clearArcs() { arcFeatures = {}; syncArcsSource(); }
 
 // ---------------------------------------------------------------- focus mode
-// Selecting a match should show EXACTLY its own facilities and route(s) -- not all
-// ~15 discovery arcs at once, which is what made "why are there 3 points?" happen.
 function arcsWithMatchKey(matchKey) {
   return Object.values(arcFeatures).filter((a) => a.feature.properties.match_key === matchKey);
 }
@@ -302,11 +288,6 @@ async function ensureMatchDrawn(type, idx) {
   return matchKey;
 }
 
-// Single source of truth for arc opacity. Focus mode (one match isolated) and the
-// legend's per-layer toggles both want to control visibility -- if each wrote `opacity`
-// independently they'd clobber each other (toggling a layer could resurrect an arc focus
-// mode just hid). This is the only function allowed to write `opacity`; everything else
-// just updates state and calls this.
 let focusedMatchKey = null;
 let layerVisible = { pair: true, cascade: true, cycle: true, ghost: true };
 
@@ -343,10 +324,6 @@ function clearFocus() {
 }
 
 function igniteRing(nodeIds) {
-  // NOTE: never touch `.style.transform` on a marker element -- MapLibre owns that
-  // property for geo-anchored positioning and overwrites it on every pan/zoom. Animate
-  // via width/height/filter instead, which MapLibre never touches, so the "scale up"
-  // effect can't fight the marker's actual map position.
   nodeIds.forEach((id) => {
     const f = facilitiesById[id];
     if (f && f._el) {
@@ -397,11 +374,11 @@ function startBreathing() {
   setInterval(() => {
     if (!map || !map.getLayer("arcs-glow")) return;
     const factor = 0.35 + 0.35 * (0.5 + 0.5 * Math.sin(performance.now() / 900));
-    try { map.setPaintProperty("arcs-glow", "line-opacity", ["*", ["get", "opacity"], factor]); } catch (e) { /* layer not ready yet */ }
+    try { map.setPaintProperty("arcs-glow", "line-opacity", ["*", ["get", "opacity"], factor]); } catch (e) { }
   }, 120);
 }
 
-// ---------------------------------------------------------------- traveling light packets (agents "contacting" each other)
+// ---------------------------------------------------------------- traveling light packets
 let packetFeatures = {};
 let packetSeq = 0;
 function syncPacketsSource() {
@@ -411,17 +388,9 @@ function syncPacketsSource() {
   src.setData({ type: "FeatureCollection", features: Object.values(packetFeatures) });
 }
 async function spawnPacket(sellerId, buyerId, durationMs, reverse, bend) {
-  // ALWAYS build the curve in canonical seller->buyer order -- matching exactly how
-  // the visible line was drawn -- then reverse the POINT ARRAY (not recompute the
-  // curve) for a buyer-authored turn. curvedLngLats(a,b) is NOT symmetric under
-  // swapping a/b: the perpendicular bend offset flips sides, so calling it with
-  // (buyer,seller) produces a mirror-image curve on the OPPOSITE side of the real
-  // line, not the same curve traveled backward -- that was the "flying in air" bug.
-  // `bend` must also match whatever the line itself was drawn with (cycles use 0.22,
-  // everything else defaults to 0.18) or the two diverge for closed-loop legs.
   const a = facilitiesById[sellerId], b = facilitiesById[buyerId];
   if (!a || !b || !map) return;
-  const myGen = negotiationGen; // self-cancel if a different match is clicked mid-flight
+  const myGen = negotiationGen;
   let path = curvedLngLats([a.lat, a.lon], [b.lat, b.lon], bend);
   if (reverse) path = path.slice().reverse();
   const id = "pkt_" + (packetSeq++);
@@ -440,7 +409,7 @@ async function spawnPacket(sellerId, buyerId, durationMs, reverse, bend) {
   syncPacketsSource();
 }
 
-// ---------------------------------------------------------------- radar "thinking" ping on a facility marker
+// ---------------------------------------------------------------- radar "thinking" ping
 function startPing(facilityId) {
   const f = facilitiesById[facilityId];
   if (!f || !f._el || f._el.querySelector(".radar-ping")) return;
@@ -472,7 +441,7 @@ function flyToMatch(nodeIds) {
   map.fitBounds([[minLon, minLat], [maxLon, maxLat]], { padding: 120, duration: 1400, maxZoom: 9 });
 }
 
-// ---------------------------------------------------------------- engine log (honest theatrics)
+// ---------------------------------------------------------------- engine log
 function logShow() { document.getElementById("enginelog").classList.add("show"); }
 function logClear() { document.getElementById("enginelog").innerHTML = ""; }
 async function logLine(text, cls, delay) {
@@ -485,7 +454,7 @@ async function logLine(text, cls, delay) {
   await sleep(delay === undefined ? 260 : delay);
 }
 
-// ---------------------------------------------------------------- system monitor (real backend telemetry)
+// ---------------------------------------------------------------- system monitor
 function sysShow() { document.getElementById("sysmonitor").classList.add("show"); }
 function sysClear() { document.getElementById("sysmonitor-body").innerHTML = ""; }
 function sysLog(text, cls) {
@@ -526,18 +495,12 @@ async function discover() {
   clearFocus();
 
   await runDiscoveryLog(currentDiscovery.stats, currentDiscovery.cycles, currentDiscovery.cascades,
-                         currentDiscovery.pairs, currentDiscovery.rejected);
+    currentDiscovery.pairs, currentDiscovery.rejected);
 
   renderNetworkReadout(currentDiscovery.network);
   renderSidepanel(currentDiscovery);
   document.getElementById("btn-discover").disabled = false;
 
-  // staged reveal: pairs first, then cascades, then the cycle with a dramatic beat.
-  // Every arc carries a matchKey ("pair:3", "cascade:1", "cycle:0") matching the
-  // sidepanel's data-idx, so focusMatch() can find and isolate it on selection.
-  // ALL pairs/cascades are drawn (not a top-N slice) so the map and sidepanel counts
-  // always agree; timings are cut tight (~180-220ms/arc) since a full network is
-  // ~30 arcs and the reveal must still land in a few seconds.
   const pairsAll = currentDiscovery.pairs;
   for (let i = 0; i < pairsAll.length; i++) {
     const p = pairsAll[i];
@@ -581,7 +544,7 @@ function renderSidepanel(d) {
       html += "<div class=\"match-row\" data-type=\"cycle\" data-idx=\"" + i + "\">"
         + "<div class=\"mr-title\">" + c.nodes.map(shortName).join(" → ") + " → ↩</div>"
         + "<div class=\"mr-sub\">" + fmtINR(c.total_saving_inr) + "/mo · " + fmtT(c.total_co2_avoided_t) + " CO2</div>"
-      + "</div>";
+        + "</div>";
     });
   }
   if (d.cascades.length) {
@@ -666,16 +629,8 @@ function renderToolChips(ev) {
     + "<span class=\"tool-chip\">⚙ verdict: " + ev.compliance.verdict + "</span></div>";
 }
 
-// Two-series line chart: seller asks vs buyer offers across negotiation rounds, with
-// the settlement price marked. Colors reuse the app's own established teal/amber pair
-// (validated via the dataviz skill's palette checker: CVD deltaE 13.3-25.4, well above
-// the >=8 safety threshold -- only the lightness-band check misses, a stylistic nitpick
-// not an accessibility one). Direct-labeled legend below keeps identity off color alone.
 function renderConvergenceChart(turns, settlementPrice) {
   if (!turns || turns.length === 0) return "";
-  // Generous margins on purpose: this chart's whole job is to be understood in one
-  // glance without reading a legend first, so every key number is a direct label on
-  // the chart itself -- axis context (rounds, ₹) plus the opening and closing prices.
   const W = 300, H = 130, padL = 12, padR = 12, padT = 22, padB = 24;
   const prices = turns.map((t) => t.price_inr_per_t);
   if (settlementPrice != null) prices.push(settlementPrice);
@@ -692,15 +647,12 @@ function renderConvergenceChart(turns, settlementPrice) {
   const sellerPts = turns.filter((t) => t.agent_role === "seller");
   const buyerPts = turns.filter((t) => t.agent_role === "buyer");
 
-  // Round-number ticks on the X axis -- without these, nothing tells a viewer the
-  // horizontal axis is "negotiation round" at all.
   let ticks = "";
   for (let r = 1; r <= maxRound; r++) {
     const x = xScale(r);
     ticks += "<text x=\"" + x.toFixed(1) + "\" y=\"" + (H - padB + 14) + "\" fill=\"#6f8b83\" font-size=\"8\" text-anchor=\"middle\">R" + r + "</text>";
   }
 
-  // Direct price label at a point -- the actual number, not just a dot's height.
   const label = (t, color, dy) => "<text x=\"" + xScale(t.round).toFixed(1) + "\" y=\"" + (yScale(t.price_inr_per_t) + dy).toFixed(1)
     + "\" fill=\"" + color + "\" font-size=\"9\" font-weight=\"700\" text-anchor=\"middle\">₹" + t.price_inr_per_t + "</text>";
 
@@ -769,7 +721,6 @@ function renderVetoCard(ev) {
 document.getElementById("theatre-body").addEventListener("click", async (e) => {
   const btn = e.target.closest("button[data-approve]");
   if (!btn || btn.disabled) return;
-  // Disable immediately -- prevents the double-click "approved multiple times" stacking.
   const allSignoffBtns = btn.closest(".signoff").querySelectorAll("button[data-approve]");
   allSignoffBtns.forEach((b) => { b.disabled = true; });
 
@@ -789,13 +740,13 @@ document.getElementById("theatre-body").addEventListener("click", async (e) => {
     + "</div></div>");
 });
 
-// ---------------------------------------------------------------- sound (synthesized, no assets)
+// ---------------------------------------------------------------- sound
 let audioCtx = null;
 function playChime(kind) {
   try {
     audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
     const now = audioCtx.currentTime;
-    const notes = kind === "loop" ? [523.25, 659.25, 783.99, 1046.5] : [523.25, 783.99]; // C5-E5-G5-C6 vs C5-G5
+    const notes = kind === "loop" ? [523.25, 659.25, 783.99, 1046.5] : [523.25, 783.99];
     notes.forEach((freq, i) => {
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
@@ -809,7 +760,7 @@ function playChime(kind) {
       osc.start(t0);
       osc.stop(t0 + 0.55);
     });
-  } catch (e) { /* audio not available -- silently skip, never block the demo */ }
+  } catch (e) { }
 }
 
 function renderNetworkReadout(network) {
@@ -965,7 +916,7 @@ function startLoop(cycle) {
   });
 }
 
-// ---------------------------------------------------------------- shock console (with visible before/after)
+// ---------------------------------------------------------------- shock console
 async function applyShock(params, label) {
   logClear(); logShow();
   await logLine("> ⚠ SHOCK APPLIED: " + label, "warn", 200);
@@ -998,8 +949,6 @@ async function applyShock(params, label) {
   currentDiscovery.pairs.forEach((p, i) => {
     drawArc(p.seller_id, p.buyer_id, { color: "#35e0c0", weight: 1.5, opacity: 0.45, durationMs: 180, meta: p, matchKey: "pair:" + i });
   });
-  // Cascades were previously never redrawn here -- they'd silently vanish from the map
-  // after any shock until the next full DISCOVER. Fixed: redraw them same as pairs/cycles.
   currentDiscovery.cascades.forEach((c, ci) => {
     for (let i = 0; i < c.nodes.length - 1; i++) {
       drawArc(c.nodes[i], c.nodes[i + 1], { color: "#6bc7d9", weight: 2, opacity: 0.6, durationMs: 220, meta: c.legs[i], matchKey: "cascade:" + ci });

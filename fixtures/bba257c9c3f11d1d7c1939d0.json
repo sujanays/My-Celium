@@ -3,7 +3,7 @@
   "price_inr_per_t": 15800,
   "volume_t_per_month": 75,
   "logistics_split": "seller_delivers",
-  "public_message": "Deal \u2013 75\u202ft at Rs\u202f15,800 per tonne, delivery included.",
-  "private_reasoning": "Accept to lock loop, price acceptable vs ceiling and past deals.",
-  "confidence": 0.97
+  "public_message": "Deal at 75\u202ft for Rs\u202f15,800 per tonne, delivered.",
+  "private_reasoning": "Offer matches prior successful price, within ceiling, ensures loop continuity; volume acceptable.",
+  "confidence": 0.95
 }

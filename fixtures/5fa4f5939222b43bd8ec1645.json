@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 150,
+  "volume_t_per_month": 210,
+  "logistics_split": "seller_delivers",
+  "public_message": "Deal at Rs.150 per tonne, 210t, delivery included.",
+  "private_reasoning": "Accepting 150 > floor, preserves loop and avoids disposal cost.",
+  "confidence": 0.95
+}

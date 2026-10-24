@@ -1,0 +1,9 @@
+{
+  "action": "accept",
+  "price_inr_per_t": 680,
+  "volume_t_per_month": 170,
+  "logistics_split": "seller_delivers",
+  "public_message": "Deal \u2013 170\u202ft at Rs.680/t, delivered.",
+  "private_reasoning": "Buyer price above floor and aligns with past deal; accept to secure loop.",
+  "confidence": 0.98
+}

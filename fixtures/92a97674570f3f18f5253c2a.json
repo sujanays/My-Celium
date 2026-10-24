@@ -3,7 +3,7 @@
   "price_inr_per_t": 660,
   "volume_t_per_month": 170,
   "logistics_split": "seller_delivers",
-  "public_message": "Deal at Rs\u202f660/t for 170\u202ft, delivered.",
-  "private_reasoning": "Accept; meets floor, matches past deal price, ensures loop continuity.",
-  "confidence": 0.98
+  "public_message": "Deal \u2013 170\u202ft at \u20b9660/t, seller\u2011delivers, let\u2019s roll!",
+  "private_reasoning": "Price matches prior successful deal, above floor, keep loop alive.",
+  "confidence": 0.97
 }

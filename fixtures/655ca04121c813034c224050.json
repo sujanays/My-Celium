@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 655,
+  "volume_t_per_month": 170,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can take 170t at Rs.655 per tonne, delivered to our site.",
+  "private_reasoning": "Target 655 beats past 660, matches needed volume, keeps loop alive, seller_delivers acceptable.",
+  "confidence": 0.8
+}
