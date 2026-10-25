@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 180,
-  "volume_t_per_month": 220,
-  "logistics_split": "buyer_pickup",
-  "public_message": "Deal accepted at Rs.180 per tonne for 220\u202ft, we\u2019ll handle pickup.",
-  "private_reasoning": "Seller\u2019s price of Rs.180/t is well below our private ceiling of Rs.220/t and far cheaper than virgin feedstock (Rs.600/t). Accepting now secures the critical feedstock flow and keeps the three\u2011party loop intact, avoiding the risk of collapse. The volume matches the offer and transport cost remains manageable. No need to push further given high urgency and regulatory 3\u2011day move requirement.",
-  "confidence": 0.97
-}

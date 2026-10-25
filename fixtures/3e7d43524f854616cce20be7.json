@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 95,
-  "volume_t_per_month": 140,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal accepted at Rs.95 per tonne, 140 tonnes, delivery included.",
-  "private_reasoning": "Offer exceeds floor and yields acceptable profit; better to close now.",
-  "confidence": 0.92
-}

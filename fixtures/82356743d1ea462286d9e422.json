@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 155,
-  "volume_t_per_month": 210,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can take 210\u202ft/month at Rs\u202f155 per tonne, with your delivery.",
-  "private_reasoning": "Counter to 155/t for 210t, stay near past deal range, keep loop alive, keep seller delivery.",
-  "confidence": 0.85
-}

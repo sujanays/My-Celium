@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 1150,
-  "volume_t_per_month": 1200,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can supply the full 1200\u202ft at Rs1150 per tonne, with seller delivery.",
-  "private_reasoning": "Concede price to entice buyer to take full volume, still well above floor.",
-  "confidence": 0.7
-}

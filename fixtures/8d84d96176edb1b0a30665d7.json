@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 950,
-  "volume_t_per_month": 700,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can consider 950\u202fRs per tonne, same volume and delivery terms.",
-  "private_reasoning": "Aim to lower price toward target while staying well below ceiling.",
-  "confidence": 0.85
-}

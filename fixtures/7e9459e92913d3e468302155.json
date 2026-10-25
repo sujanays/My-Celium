@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 100,
-  "volume_t_per_month": 150,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal accepted at Rs.100 per tonne, 150\u202ft/month, delivered.",
-  "private_reasoning": "Price acceptable, aligns with past deal, ensures supply; closing now is efficient.",
-  "confidence": 0.97
-}

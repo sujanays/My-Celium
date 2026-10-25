@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 15800,
-  "volume_t_per_month": 70,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal. 15,800 per tonne, 70\u202ft, delivered \u2013 let's finalize.",
-  "private_reasoning": "Price acceptable, matches past deal, ensures loop continuity; no need to push lower.",
-  "confidence": 0.97
-}

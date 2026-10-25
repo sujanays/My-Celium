@@ -1,9 +1,0 @@
-{
-  "action": "offer",
-  "price_inr_per_t": 400,
-  "volume_t_per_month": 850,
-  "logistics_split": "buyer_pickup",
-  "public_message": "We can supply 850\u202ftonnes/month at Rs.400 per tonne, buyer pickup.",
-  "private_reasoning": "Opening at ask to signal urgency and test counterparty willingness.",
-  "confidence": 0.85
-}

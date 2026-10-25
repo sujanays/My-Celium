@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 320,
-  "volume_t_per_month": 850,
-  "logistics_split": "buyer_pickup",
-  "public_message": "We can do 850\u202ft at Rs.320 per tonne, buyer pickup.",
-  "private_reasoning": "Target 330, push lower to 320 to test seller's floor, maintain margin vs virgin cost.",
-  "confidence": 0.82
-}

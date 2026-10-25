@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 655,
-  "volume_t_per_month": 170,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal \u2013 170\u202ft at \u20b9655/t, delivered as requested.",
-  "private_reasoning": "Offer exceeds floor; loop needs closure, accept now.",
-  "confidence": 0.97
-}

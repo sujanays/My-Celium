@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 940,
-  "volume_t_per_month": 700,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can meet at Rs\u202f940 per tonne, same volume, delivered.",
-  "private_reasoning": "Aim to improve margin, target 900, counter near 940 given past 1000 deal.",
-  "confidence": 0.85
-}

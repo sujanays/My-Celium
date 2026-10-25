@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 1250,
-  "volume_t_per_month": 1200,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal accepted at Rs.1250 per tonne, 1200t, seller delivery.",
-  "private_reasoning": "Offer within ceiling; accept to secure supply, previous deal at same price.",
-  "confidence": 0.95
-}

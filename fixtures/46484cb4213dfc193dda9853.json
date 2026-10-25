@@ -1,9 +1,0 @@
-{
-  "action": "offer",
-  "price_inr_per_t": 400,
-  "volume_t_per_month": 850,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can offload 850 tonnes at Rs.400 per tonne, delivery included.",
-  "private_reasoning": "Open high to anchor, aim to settle above floor, stress urgency.",
-  "confidence": 0.9
-}

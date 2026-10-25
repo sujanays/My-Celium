@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 340,
-  "volume_t_per_month": 300,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal accepted at Rs.340 per tonne, 300\u202ft, delivered.",
-  "private_reasoning": "Price below ceiling, urgent volume need, good margin vs virgin sand.",
-  "confidence": 0.93
-}

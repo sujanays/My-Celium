@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 660,
-  "volume_t_per_month": 170,
-  "logistics_split": "split",
-  "public_message": "660 per tonne for 170 tonnes, split logistics.",
-  "private_reasoning": "Push toward historical 650\u2011660 range, keep volume near need, share transport.",
-  "confidence": 0.78
-}

@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 340,
-  "volume_t_per_month": 500,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal, 500\u202ft at Rs\u202f340/t, we'll deliver as agreed.",
-  "private_reasoning": "Price exceeds disposal cost; urgent to offload; accept buyer's terms.",
-  "confidence": 0.95
-}

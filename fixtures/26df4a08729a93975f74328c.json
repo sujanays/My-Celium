@@ -1,6 +1,0 @@
-{
-  "verdict": "broker_split",
-  "final_price_inr_per_t": 300,
-  "final_volume_t_per_month": 350,
-  "reasoning": "Prices aligned at Rs.300/t, so a split\u2011the\u2011difference volume of 350\u202ft balances the seller's 250\u202ft and buyer's 450\u202ft requests."
-}

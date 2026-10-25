@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 270,
-  "volume_t_per_month": 250,
-  "logistics_split": "seller_delivers",
-  "public_message": "We appreciate the offer, but can you meet Rs\u202f270 per tonne for 250\u202ft?",
-  "private_reasoning": "Target 260, aim below past 300 deal; counter at 270 to secure volume quickly.",
-  "confidence": 0.8
-}

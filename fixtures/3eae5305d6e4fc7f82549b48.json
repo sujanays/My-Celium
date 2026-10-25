@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 90.0,
-  "volume_t_per_month": 100.0,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can consider 100\u202ft/month at Rs\u202f90 per tonne, with seller delivery.",
-  "private_reasoning": "Aim to reduce price toward target while staying under ceiling; 90 is reasonable start.",
-  "confidence": 0.82
-}

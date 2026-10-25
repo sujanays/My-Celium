@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 300,
-  "volume_t_per_month": 450,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can take 450\u202ftonnes at Rs.300 per tonne, delivered.",
-  "private_reasoning": "Aim for required volume at known acceptable price, leveraging past deal.",
-  "confidence": 0.9
-}

@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 680,
-  "volume_t_per_month": 170,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal \u2013 170\u202ft at Rs\u202f680/t, we\u2019ll deliver.",
-  "private_reasoning": "Offer above floor, maintain loop, buyer says final, accept to avoid collapse.",
-  "confidence": 0.9
-}

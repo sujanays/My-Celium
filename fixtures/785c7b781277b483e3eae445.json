@@ -1,0 +1,9 @@
+{
+  "action": "counter",
+  "price_inr_per_t": 900,
+  "volume_t_per_month": 650,
+  "logistics_split": "seller_delivers",
+  "public_message": "We can take 650 tonnes at Rs.900 per tonne, seller delivery.",
+  "private_reasoning": "Aim low to pull price toward target, still far below ceiling.",
+  "confidence": 0.8
+}

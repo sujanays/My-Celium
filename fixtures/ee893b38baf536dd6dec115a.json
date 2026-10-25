@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 340,
-  "volume_t_per_month": 300,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can meet at Rs.340 per tonne, delivered as agreed.",
-  "private_reasoning": "Target near past deal price, push up from 320 while staying acceptable.",
-  "confidence": 0.7
-}

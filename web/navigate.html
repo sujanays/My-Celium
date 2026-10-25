@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MYCELIUM - Route View</title>
+    <title>MYCELIUM - Live GPS Navigation</title>
     <!-- MapLibre GL v6.15.0 CSS -->
     <link href="https://unpkg.com/maplibre-gl@6.15.0/dist/maplibre-gl.css" rel="stylesheet" />
     <style>
@@ -16,7 +16,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #0d1110; /* Dark slate background fallback to prevent light flashes during map loading */
+            background-color: #0d1110;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
         #map {
@@ -38,10 +38,10 @@
 </head>
 <body>
 
-    <!-- Main Navigation Map Viewport -->
+    <!-- Main Navigation Viewport -->
     <div id="map"></div>
 
-    <!-- Application Controller Script -->
+    <!-- Application Controller Module -->
     <script type="module" src="./navigate.js"></script>
 </body>
 </html>

@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 365,
-  "volume_t_per_month": 800,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can meet 800\u202ft/month at Rs.365 per tonne, delivering to your site.",
-  "private_reasoning": "Counter at 365, near past deal, improve profit while meeting buyer volume.",
-  "confidence": 0.85
-}

@@ -1,3 +1,5 @@
 {"counterparty_id": "jsr_ggbs_cement", "counterparty_name": "Jamshedpur GGBS Cement Plant", "material": "steel_slag", "outcome": "deal_closed", "final_price": 1000, "rounds": 5, "human_note": null}
 {"counterparty_id": "jsr_ggbs_cement", "counterparty_name": "Jamshedpur GGBS Cement Plant", "material": "steel_slag", "outcome": "deal_closed", "final_price": 1000, "rounds": 4, "human_note": null}
 {"counterparty_id": "jb_cmt", "counterparty_name": "JB Cement Work", "material": "steel_slag", "outcome": "deal_closed", "final_price": 1150, "rounds": 5, "human_note": null}
+{"counterparty_id": "bellary_cement", "counterparty_name": "Bellary Cement Works", "material": "steel_slag", "outcome": "deal_closed", "final_price": 900, "rounds": 3, "human_note": null}
+{"counterparty_id": "bellary_cement", "counterparty_name": "Bellary Cement Works", "material": "steel_slag", "outcome": "human_rejected", "final_price": null, "rounds": 0, "human_note": "price too low"}

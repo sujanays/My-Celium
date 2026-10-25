@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 680,
-  "volume_t_per_month": 170,
-  "logistics_split": "seller_delivers",
-  "public_message": "800 is steep; we can meet at Rs.680/t, 170t, seller delivers.",
-  "private_reasoning": "Counter near past deal price, stay below ceiling, push for lower cost.",
-  "confidence": 0.78
-}

@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 160,
-  "volume_t_per_month": 220,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal at Rs.160 per tonne, 220\u202ft, seller delivers.",
-  "private_reasoning": "Accept to lock loop; price well under ceiling, urgency high.",
-  "confidence": 0.93
-}

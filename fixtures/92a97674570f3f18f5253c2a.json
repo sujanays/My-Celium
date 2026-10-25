@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 660,
-  "volume_t_per_month": 170,
-  "logistics_split": "split",
-  "public_message": "Deal \u2013 660 per tonne for 170\u202ft, split logistics, good to go!",
-  "private_reasoning": "Offer above floor, matches past deal range, ensures loop continuity",
-  "confidence": 0.97
-}

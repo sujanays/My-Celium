@@ -1,9 +1,0 @@
-{
-  "action": "offer",
-  "price_inr_per_t": 16500,
-  "volume_t_per_month": 70,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can do 70 tonnes at Rs.16,500 per tonne, delivered as you propose.",
-  "private_reasoning": "Seller's Rs.17,500/t is above our target of Rs.15,500/t but below our ceiling of Rs.19,000/t, so we have room to negotiate down while keeping the deal alive. Reducing volume to our needed 70t and lowering price to Rs.16,500/t gets us closer to our target and still looks attractive to the seller, preserving the critical 3\u2011party loop.",
-  "confidence": 0.78
-}

@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 680,
-  "volume_t_per_month": 170,
-  "logistics_split": "seller_delivers",
-  "public_message": "Rs.680 per tonne for 170\u202ft, delivered, is that workable?",
-  "private_reasoning": "Push price toward 660 anchor, stay below ceiling, keep loop alive.",
-  "confidence": 0.85
-}

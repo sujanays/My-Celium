@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 660,
-  "volume_t_per_month": 170,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal \u2013 660\u202fRs/tonne for 170\u202ft, delivered as discussed.",
-  "private_reasoning": "Offer exceeds floor; quick closure needed for loop integrity; accept.",
-  "confidence": 0.97
-}

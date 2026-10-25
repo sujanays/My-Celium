@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 340,
-  "volume_t_per_month": 500,
-  "logistics_split": "seller_delivers",
-  "public_message": "Could you do 500\u202ft at Rs\u202f340 per tonne, delivery included?",
-  "private_reasoning": "Counter lower to meet target, reduce volume, keep delivery to avoid extra transport cost.",
-  "confidence": 0.7
-}

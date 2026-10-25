@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 300,
-  "volume_t_per_month": 250,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal accepted at Rs.300 per tonne, delivered as agreed.",
-  "private_reasoning": "Offer exceeds floor and disposal cost; matches past deal, ensures profit and avoids waste disposal.",
-  "confidence": 0.95
-}

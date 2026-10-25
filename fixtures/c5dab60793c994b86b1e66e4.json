@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 655,
-  "volume_t_per_month": 170,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal, 655 per tonne, 170t, delivered.",
-  "private_reasoning": "Accept to lock loop; price above floor, close deal fast.",
-  "confidence": 0.92
-}

@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 16500,
-  "volume_t_per_month": 75,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal, 75\u202ft at Rs\u202f16,500, delivery works for us.",
-  "private_reasoning": "Price under ceiling, quick close ensures loop stability, past deals at this level.",
-  "confidence": 0.8
-}

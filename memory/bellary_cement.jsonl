@@ -1,1 +1,2 @@
 {"counterparty_id": "bellary_thermal_power", "counterparty_name": "Bellary Thermal Power Station", "material": "fly_ash", "outcome": "deal_closed", "final_price": 320, "rounds": 3, "human_note": null}
+{"counterparty_id": "hospet_steel", "counterparty_name": "Hospet Steel & Alloys Ltd", "material": "steel_slag", "outcome": "deal_closed", "final_price": 900, "rounds": 3, "human_note": null}

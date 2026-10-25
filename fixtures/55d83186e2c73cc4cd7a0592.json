@@ -1,9 +1,9 @@
 {
   "action": "accept",
-  "price_inr_per_t": 100,
-  "volume_t_per_month": 140,
+  "price_inr_per_t": 900,
+  "volume_t_per_month": 650,
   "logistics_split": "seller_delivers",
-  "public_message": "Deal accepted at Rs.100 per tonne for 140\u202ft/month, delivery included.",
+  "public_message": "Deal accepted at Rs.900 per tonne for 650\u202ft, seller delivery.",
   "private_reasoning": "Offer exceeds floor; accept to avoid disposal cost.",
   "confidence": 0.95
 }

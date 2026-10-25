@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 720,
-  "volume_t_per_month": 180,
-  "logistics_split": "seller_delivers",
-  "public_message": "How about Rs.720 per tonne, full 180t, delivered by us?",
-  "private_reasoning": "Counter to bridge gap, aim near past 700, keep loop alive.",
-  "confidence": 0.78
-}

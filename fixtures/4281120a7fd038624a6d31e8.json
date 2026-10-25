@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 200,
-  "volume_t_per_month": 260,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can meet you at Rs\u202f200 per tonne, delivered.",
-  "private_reasoning": "Counter toward target, still above floor, aiming to close price gap.",
-  "confidence": 0.78
-}

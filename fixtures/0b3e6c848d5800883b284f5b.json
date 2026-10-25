@@ -1,9 +1,0 @@
-{
-  "action": "offer",
-  "price_inr_per_t": 1080,
-  "volume_t_per_month": 700,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can supply 700\u202ft/month at Rs\u202f1080 per tonne, delivered to your site.",
-  "private_reasoning": "Open near past price to speed deal, still above floor.",
-  "confidence": 0.85
-}

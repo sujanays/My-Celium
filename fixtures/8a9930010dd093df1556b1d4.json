@@ -1,9 +1,0 @@
-{
-  "action": "accept",
-  "price_inr_per_t": 750,
-  "volume_t_per_month": 170,
-  "logistics_split": "seller_delivers",
-  "public_message": "Deal\u2014Rs\u202f750/t for 170\u202ft, we\u2019ll handle transport.",
-  "private_reasoning": "Offer exceeds floor, ensures loop continuity, covers transport cost, profitable.",
-  "confidence": 0.97
-}

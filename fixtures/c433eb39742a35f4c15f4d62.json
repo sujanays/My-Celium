@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 660,
-  "volume_t_per_month": 170,
-  "logistics_split": "seller_delivers",
-  "public_message": "660 per tonne for 170\u202ft, delivered, that's my final.",
-  "private_reasoning": "Counter to 660/t, 170t, seller delivery; align with past 660 deals, stay below target.",
-  "confidence": 0.85
-}

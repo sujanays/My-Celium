@@ -1,9 +1,0 @@
-{
-  "action": "counter",
-  "price_inr_per_t": 15900,
-  "volume_t_per_month": 75,
-  "logistics_split": "seller_delivers",
-  "public_message": "We can meet 75\u202ft at Rs\u202f15,900 per tonne, delivered.",
-  "private_reasoning": "Maintain volume, slight price increase over buyer's offer to secure loop continuity.",
-  "confidence": 0.85
-}
