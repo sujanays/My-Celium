@@ -110,3 +110,95 @@ def human_signoff(facility_id: str, counterparty_id: str, counterparty_name: str
     memory.record(facility_id, counterparty_id, counterparty_name, material, outcome,
                   final_price=None, rounds=0, human_note=note)
     return {"status": "recorded", "outcome": outcome}
+
+
+# ---------------------------------------------------------------------------
+# Facility dashboard: Telegram registrations, transcripts, price quotes
+# ---------------------------------------------------------------------------
+import httpx
+from fastapi import HTTPException
+from pydantic import BaseModel
+import conversations
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+if not TELEGRAM_BOT_TOKEN:
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+    TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+
+
+def _read_facilities() -> list[dict]:
+    # read fresh from disk so registrations made by the bot show up without a restart
+    with open(os.path.join(os.path.dirname(__file__), "..", "data", "facilities.json"), "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _quotes(chat_id) -> list[dict]:
+    return [m for m in conversations.load(chat_id) if m.get("kind") == "quote"]
+
+
+@app.get("/dashboard")
+def dashboard_page():
+    return FileResponse(os.path.join(WEB_DIR, "dashboard.html"))
+
+
+@app.get("/api/dashboard/facilities")
+def dashboard_facilities():
+    out = []
+    for f in _read_facilities():
+        chat_id = f.get("telegram_chat_id")
+        log = conversations.load(chat_id) if chat_id else []
+        quotes = [m for m in log if m.get("kind") == "quote"]
+        out.append({**f, "message_count": len(log), "last_quote": quotes[-1] if quotes else None})
+    out.sort(key=lambda f: f.get("registered_at") or "", reverse=True)
+    return out
+
+
+@app.get("/api/dashboard/facilities/{facility_id}/conversation")
+def dashboard_conversation(facility_id: str):
+    fac = next((f for f in _read_facilities() if f.get("id") == facility_id), None)
+    if not fac:
+        raise HTTPException(404, "facility not found")
+    chat_id = fac.get("telegram_chat_id")
+    return {"facility_id": facility_id, "chat_id": chat_id, "messages": conversations.load(chat_id) if chat_id else []}
+
+
+class Quote(BaseModel):
+    amount_inr_per_t: float
+    material: str | None = None
+    note: str | None = None
+
+
+@app.post("/api/dashboard/facilities/{facility_id}/quote")
+def dashboard_send_quote(facility_id: str, quote: Quote):
+    fac = next((f for f in _read_facilities() if f.get("id") == facility_id), None)
+    if not fac:
+        raise HTTPException(404, "facility not found")
+    chat_id = fac.get("telegram_chat_id")
+    if not chat_id:
+        raise HTTPException(400, "facility was not registered via Telegram; no chat to message")
+    if quote.amount_inr_per_t <= 0:
+        raise HTTPException(400, "amount must be positive")
+    if not TELEGRAM_BOT_TOKEN:
+        raise HTTPException(500, "TELEGRAM_BOT_TOKEN not configured")
+
+    mat = quote.material.replace("_", " ").title() if quote.material else "your material"
+    text = (f"💰 Price update from MYCELIUM for {fac.get('name', facility_id)}\n\n"
+            f"Material: {mat}\n"
+            f"Offered price: ₹{quote.amount_inr_per_t:,.0f} per tonne")
+    if quote.note:
+        text += f"\n\nNote: {quote.note}"
+    text += "\n\nReply here to accept or discuss."
+
+    try:
+        r = httpx.post(f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
+                       json={"chat_id": chat_id, "text": text}, timeout=15)
+        data = r.json()
+    except httpx.HTTPError as e:
+        raise HTTPException(502, f"Telegram unreachable: {e}")
+    if not data.get("ok"):
+        raise HTTPException(502, f"Telegram error: {data.get('description', 'unknown')}")
+
+    entry = conversations.append(chat_id, "dashboard", text, kind="quote",
+                                 extra={"amount_inr_per_t": quote.amount_inr_per_t, "material": quote.material})
+    return {"status": "sent", "message": entry}
