@@ -598,15 +598,148 @@ async function onMatchClick(type, idx) {
 }
 
 // ---------------------------------------------------------------- theatre
-function clearTheatre() {
-  document.getElementById("theatre-body").innerHTML = "";
+// The theatre is a chat history: every negotiation is a <details class="session">.
+// Starting a new one collapses the previous session instead of wiping it, and the
+// whole history is persisted to localStorage so it survives reloads.
+const HISTORY_KEY = "mycelium_theatre_history";
+const HISTORY_MAX_SESSIONS = 30;
+
+function liveSession() { return document.querySelector("#theatre-body .session.live"); }
+
+function renderSessionSummary(session) {
+  const t = new Date(Number(session.dataset.started));
+  session.querySelector(":scope > summary").innerHTML =
+    "<span class=\"s-title\">" + escapeHtml(session.dataset.title) + "</span>"
+    + "<span class=\"s-status\">" + escapeHtml(session.dataset.status || "running…") + "</span>"
+    + "<span class=\"s-time\">" + t.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + "</span>";
 }
-function appendTheatre(html) {
+
+function setSessionStatus(text, session, append) {
+  session = session || liveSession();
+  if (!session) return;
+  session.dataset.status = append && session.dataset.status ? session.dataset.status + " · " + text : text;
+  renderSessionSummary(session);
+  saveHistory();
+}
+
+function archiveLiveSession() {
+  const live = liveSession();
+  if (!live) return;
+  if (!live.querySelector(".turn-card, .deal-card, .veto-card, .loop-banner")) { live.remove(); return; }
+  live.classList.remove("live");
+  live.open = false;
+  if (!live.dataset.status) setSessionStatus("interrupted", live);
+}
+
+function startSession(title) {
   const body = document.getElementById("theatre-body");
+  archiveLiveSession();
+  body.querySelectorAll(":scope > .theatre-empty").forEach((el) => el.remove());
+  const s = document.createElement("details");
+  s.className = "session live";
+  s.open = true;
+  s.dataset.title = title || "Session";
+  s.dataset.started = Date.now();
+  s.innerHTML = "<summary></summary><div class=\"session-content\"></div>";
+  body.appendChild(s);
+  renderSessionSummary(s);
+  body.scrollTop = body.scrollHeight;
+  saveHistory();
+  return s;
+}
+
+// kept for existing callers: starts a fresh session, archiving (not erasing) the old one
+function clearTheatre(title) {
+  if (title) startSession(title);
+  else { archiveLiveSession(); saveHistory(); }
+}
+
+function appendTheatre(html, session) {
+  const target = session || liveSession() || startSession("Session");
   const div = document.createElement("div");
   div.innerHTML = html;
-  body.appendChild(div.firstElementChild);
+  target.querySelector(":scope > .session-content").appendChild(div.firstElementChild);
+  if (target.classList.contains("live")) {
+    const body = document.getElementById("theatre-body");
+    body.scrollTop = body.scrollHeight;
+  }
+  saveHistory();
+}
+
+let saveTimer = null;
+function saveHistory() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    const body = document.getElementById("theatre-body");
+    const sessions = body.querySelectorAll(":scope > .session");
+    for (let i = 0; i < sessions.length - HISTORY_MAX_SESSIONS; i++) sessions[i].remove();
+    try { localStorage.setItem(HISTORY_KEY, body.innerHTML); } catch (e) { /* storage full or blocked */ }
+    updateHistoryCount();
+  }, 300);
+}
+
+function restoreHistory() {
+  let html = null;
+  try { html = localStorage.getItem(HISTORY_KEY); } catch (e) { /* blocked */ }
+  if (!html) return;
+  const body = document.getElementById("theatre-body");
+  const tmp = document.createElement("div");
+  tmp.innerHTML = html;
+  const sessions = tmp.querySelectorAll(":scope > .session");
+  if (!sessions.length) return;
+  body.innerHTML = "";
+  sessions.forEach((s) => {
+    s.classList.remove("live");
+    s.open = false;
+    if (!s.dataset.status) s.dataset.status = "interrupted";
+    body.appendChild(s);
+    renderSessionSummary(s);
+  });
   body.scrollTop = body.scrollHeight;
+  updateHistoryCount();
+}
+
+function clearHistory() {
+  try { localStorage.removeItem(HISTORY_KEY); } catch (e) { /* blocked */ }
+  document.getElementById("theatre-body").innerHTML =
+    "<div class=\"theatre-empty\">History cleared.<br><br>Click <b>DISCOVER</b> and pick a match to negotiate.</div>";
+  updateHistoryCount();
+}
+
+function updateHistoryCount() {
+  const n = document.querySelectorAll("#theatre-body > .session").length;
+  const el = document.getElementById("history-count");
+  if (el) el.textContent = n ? n + " session" + (n === 1 ? "" : "s") : "";
+}
+
+function dealFromCard(el) {
+  const card = el.closest(".deal-card");
+  try { return card && card.dataset.deal ? JSON.parse(decodeURIComponent(card.dataset.deal)) : null; } catch (e) { return null; }
+}
+
+function renderDecisionCard(kind, d, note) {
+  const heads = { approve: "✓ Deal Approved", reject: "✕ Deal Rejected", navigate: "🧭 Navigation Opened" };
+  const lines = {
+    approve: "Human sign-off recorded. This deal is final.",
+    reject: "Recorded as a hard constraint for the next negotiation between these two facilities.",
+    navigate: "Live route opened in a new tab for the logistics run.",
+  };
+  const row = (k, v) => "<div class=\"deal-row\"><span class=\"k\">" + k + "</span><span>" + v + "</span></div>";
+  let rows = "";
+  if (d) {
+    rows += row("Route", escapeHtml(d.seller_name) + " → " + escapeHtml(d.buyer_name));
+    rows += row("Material", escapeHtml(d.material_name));
+    rows += row("Price", "₹" + d.price_inr_per_t + "/t × " + d.tonnes + "t");
+    if (kind === "navigate") rows += row("Distance", d.distance_km + " km");
+    else {
+      rows += row("Saving", fmtINR(d.total_saving_inr) + "/mo");
+      rows += row("CO2 avoided", fmtT(d.co2_avoided_t));
+    }
+  }
+  if (note) rows += row("Reason", escapeHtml(note));
+  rows += row("At", new Date().toLocaleString());
+  return "<div class=\"decision-card " + kind + "\"><h3>" + heads[kind] + "</h3>"
+    + "<div class=\"decision-line\">" + lines[kind] + "</div>" + rows + "</div>";
 }
 
 function escapeHtml(s) { const d = document.createElement("div"); d.innerText = s == null ? "" : s; return d.innerHTML; }
@@ -695,7 +828,12 @@ function renderDealCard(d, turns) {
     material: d.material_name, price: d.price_inr_per_t, distance: d.distance_km,
     saving: d.total_saving_inr, co2: d.co2_avoided_t,
   }).toString();
-  return "<div class=\"deal-card\"><h3>✓ Deal Closed</h3>"
+  const dealData = encodeURIComponent(JSON.stringify({
+    seller_name: d.seller_name, buyer_name: d.buyer_name, material_name: d.material_name,
+    price_inr_per_t: d.price_inr_per_t, tonnes: d.tonnes, distance_km: d.distance_km,
+    total_saving_inr: d.total_saving_inr, co2_avoided_t: d.co2_avoided_t,
+  }));
+  return "<div class=\"deal-card\" data-deal=\"" + dealData + "\"><h3>✓ Deal Closed</h3>"
     + "<div class=\"deal-row\"><span class=\"k\">Route</span><span>" + d.seller_name + " → " + d.buyer_name + "</span></div>"
     + "<div class=\"deal-row\"><span class=\"k\">Material</span><span>" + d.material_name + "</span></div>"
     + "<div class=\"deal-row\"><span class=\"k\">Price</span><span>₹" + d.price_inr_per_t + "/t × " + d.tonnes + "t</span></div>"
@@ -719,10 +857,22 @@ function renderVetoCard(ev) {
 }
 
 document.getElementById("theatre-body").addEventListener("click", async (e) => {
+  const nav = e.target.closest("a.navigate");
+  if (nav) {
+    // let the link open; just log a summary once per deal
+    if (!nav.dataset.logged) {
+      nav.dataset.logged = "1";
+      const session = nav.closest(".session");
+      appendTheatre(renderDecisionCard("navigate", dealFromCard(nav)), session);
+      setSessionStatus("🧭 navigated", session, true);
+    }
+    return;
+  }
   const btn = e.target.closest("button[data-approve]");
   if (!btn || btn.disabled) return;
   const allSignoffBtns = btn.closest(".signoff").querySelectorAll("button[data-approve]");
-  allSignoffBtns.forEach((b) => { b.disabled = true; });
+  allSignoffBtns.forEach((b) => { b.disabled = true; b.setAttribute("disabled", ""); });
+  btn.classList.add("chosen");
 
   const approve = btn.dataset.approve === "1";
   const note = approve ? null : prompt("Reason for rejection (becomes a hard constraint next time):", "price too low");
@@ -733,11 +883,9 @@ document.getElementById("theatre-body").addEventListener("click", async (e) => {
   if (note) params.set("note", note);
   await fetch(API + "/api/signoff?" + params.toString(), { method: "POST" });
 
-  clearTheatre();
-  appendTheatre("<div class=\"" + (approve ? "deal-card" : "veto-card") + "\"><h3>"
-    + (approve ? "✓ Deal Approved" : "✕ Deal Rejected") + "</h3><div>"
-    + (approve ? "Human sign-off recorded. This deal is final." : "Recorded as a hard constraint for the next negotiation between these two facilities.")
-    + "</div></div>");
+  const session = btn.closest(".session");
+  appendTheatre(renderDecisionCard(approve ? "approve" : "reject", dealFromCard(btn), note), session);
+  setSessionStatus(approve ? "✓ approved" : "✕ rejected", session, true);
 });
 
 // ---------------------------------------------------------------- sound
@@ -802,7 +950,7 @@ function streamEvents(url, onEvent) {
 }
 
 function startPairNegotiation(pair) {
-  clearTheatre();
+  clearTheatre("Pair · " + shortName(pair.seller_id) + " ⟷ " + shortName(pair.buyer_id) + " · " + pair.material_name);
   appendTheatre("<div class=\"theatre-empty\">Negotiating " + shortName(pair.seller_id) + " ⟷ " + shortName(pair.buyer_id) + " over " + pair.material_name + "...</div>");
   const url = API + "/api/negotiate/pair?seller_id=" + pair.seller_id + "&buyer_id=" + pair.buyer_id + "&material=" + pair.material;
   streamEvents(url, handleNegotiationEvent);
@@ -818,13 +966,17 @@ function sysLogMeta(prefix, meta) {
 let currentNegotiationTurns = [];
 
 function handleNegotiationEvent(ev) {
-  if (ev.event === "negotiation_start") { clearTheatre(); appendTheatre(renderToolChips(ev)); sysClear(); sysShow(); currentNegotiationTurns = []; }
+  if (ev.event === "negotiation_start") {
+    // stays inside the current session so cascade/loop legs accumulate instead of wiping each other
+    appendTheatre("<div class=\"leg-divider\">" + shortName(ev.seller_id) + " → " + shortName(ev.buyer_id) + (ev.material_name ? " · " + escapeHtml(ev.material_name) : "") + "</div>");
+    appendTheatre(renderToolChips(ev)); sysClear(); sysShow(); currentNegotiationTurns = [];
+  }
   else if (ev.event === "llm_call_start") {
     sysLog("→ " + ev.agent_name + " (" + ev.role + ") · round " + (ev.round || "-") + " · calling LLM...", "call");
     startPing(ev.agent_id);
     spawnPacket(ev.seller_id, ev.buyer_id, 2200, ev.role === "buyer", ev.loop_id ? 0.22 : undefined);
   }
-  else if (ev.event === "compliance_veto") appendTheatre(renderVetoCard(ev));
+  else if (ev.event === "compliance_veto") { appendTheatre(renderVetoCard(ev)); setSessionStatus("✕ compliance veto", null, true); }
   else if (ev.event === "agent_turn") {
     appendTheatre(renderTurnCard(ev));
     currentNegotiationTurns.push(ev);
@@ -841,27 +993,31 @@ function handleNegotiationEvent(ev) {
   }
   else if (ev.event === "deal_closed") {
     appendTheatre(renderDealCard(ev, currentNegotiationTurns));
+    setSessionStatus("✓ deal ₹" + ev.price_inr_per_t + "/t", null, true);
     bumpHud(ev.total_saving_inr, ev.co2_avoided_t, 1);
     playChime("deal");
   }
   else if (ev.event === "deal_failed") {
     appendTheatre("<div><div class=\"theatre-empty\">✕ No deal (" + ev.reason + ").</div>" + renderConvergenceChart(currentNegotiationTurns, null) + "</div>");
+    setSessionStatus("✕ no deal", null, true);
     stopPing(ev.seller_id); stopPing(ev.buyer_id);
   }
   else if (ev.event === "llm_error") {
     appendTheatre("<div class=\"veto-card\"><h3>⚠ Agent unreachable</h3><div class=\"cite\">" + escapeHtml(ev.detail) + "</div></div>");
+    setSessionStatus("⚠ agent error", null, true);
     sysLog("✕ LLM call failed: " + ev.detail, "err");
     stopPing(ev.seller_id); stopPing(ev.buyer_id);
   }
 }
 
 function showGhostVeto(edge) {
-  clearTheatre();
+  clearTheatre("Blocked · " + shortName(edge.seller_id) + " → " + shortName(edge.buyer_id));
   appendTheatre(renderVetoCard({ seller_id: edge.seller_id, buyer_id: edge.buyer_id, material: edge.material, compliance: edge.compliance }));
+  setSessionStatus("✕ compliance veto");
 }
 
 function startCascade(cascade) {
-  clearTheatre();
+  clearTheatre("Cascade · " + cascade.nodes.map(shortName).join(" → "));
   appendTheatre("<div class=\"theatre-empty\">Running cascade: " + cascade.nodes.map(shortName).join(" → ") + "</div>");
   const legs = cascade.legs.map((leg) => ({ seller_id: leg.seller_id, buyer_id: leg.buyer_id, material: leg.material }));
   runLegsSequentially(legs);
@@ -887,8 +1043,8 @@ async function runLegsSequentially(legs) {
 }
 
 function startLoop(cycle) {
-  clearTheatre();
   const nodes = cycle.nodes;
+  clearTheatre("Loop · " + nodes.map(shortName).join(" → ") + " → ↩");
   const materials = cycle.legs.map((l) => l.material);
   appendTheatre("<div class=\"loop-banner\">⟲ CLOSED LOOP ATTEMPT: " + nodes.map(shortName).join(" → ") + " → ↩</div>");
   const loopId = "loop_" + Date.now();
@@ -906,8 +1062,10 @@ function startLoop(cycle) {
         + "<span class=\"k\">Kalundborg, Denmark took</span><span style=\"color:var(--amber)\">40 years -> ~15 exchanges</span></div>"
         + "<div class=\"deal-row\"><span class=\"k\">This ring took</span><span style=\"color:var(--teal)\">seconds to find, minutes to negotiate</span></div>"
         + "</div>");
+      setSessionStatus("⟲ loop closed · " + fmtINR(ev.total_saving_inr) + "/mo");
     } else if (ev.event === "loop_collapsed") {
       appendTheatre("<div class=\"veto-card\"><h3>⟲ RING COLLAPSED</h3><div>" + ev.reason + "</div></div>");
+      setSessionStatus("⟲ ring collapsed");
     } else if (ev.event === "loop_pacing") {
       appendTheatre("<div class=\"theatre-empty\">↻ Leg " + ev.next_leg + " closed. Pausing briefly before the next leg negotiates...</div>");
     } else {
@@ -992,7 +1150,10 @@ document.getElementById("btn-reset").addEventListener("click", async () => {
 });
 
 // ---------------------------------------------------------------- boot
+document.getElementById("btn-clear-history").addEventListener("click", clearHistory);
+
 (async function boot() {
+  restoreHistory();
   await initMap();
   const res = await fetch(API + "/api/facilities");
   const facilities = await res.json();

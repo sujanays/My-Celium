@@ -58,6 +58,40 @@
     ]
   },
   {
+    "id": "jgb_grains",
+    "name": "JgB grain factory",
+    "cluster": "Peenya/Bengaluru",
+    "lat": 12.933964,
+    "lon": 77.535098,
+    "industry": "cement",
+    "persona": "Data-driven procurement lead",
+    "urgency": "medium",
+    "hazard_license": false,
+    "phone": "+91 90401 68877",
+    "source": "telegram",
+    "telegram_chat_id": 6050031385,
+    "telegram_username": null,
+    "registered_at": "2026-10-25T00:37:16.457962+00:00",
+    "inputs": [
+      {
+        "material": "dairy_manure_whey",
+        "qty_t_per_month": 200.0,
+        "target_price_inr_per_t": 120.0,
+        "ceiling_price_inr_per_t": 200.0
+      }
+    ],
+    "outputs": [
+      {
+        "material": "biogas",
+        "qty_t_per_month": 70.0,
+        "purity": 0.9,
+        "ask_price_inr_per_t": 16500.0,
+        "floor_price_inr_per_t": 14000.0,
+        "storage_days": 5
+      }
+    ]
+  },
+  {
     "id": "greencycle_biogas",
     "name": "GreenCycle Biogas Energy Pvt Ltd",
     "cluster": "Peenya/Bengaluru",
@@ -77,14 +111,7 @@
         "storage_days": 5
       }
     ],
-    "inputs": [
-      {
-        "material": "dairy_manure_whey",
-        "qty_t_per_month": 210,
-        "target_price_inr_per_t": 100,
-        "ceiling_price_inr_per_t": 220
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "peenya_foundry",
@@ -141,14 +168,7 @@
     "urgency": "high",
     "hazard_license": false,
     "outputs": [],
-    "inputs": [
-      {
-        "material": "foundry_sand",
-        "qty_t_per_month": 450,
-        "target_price_inr_per_t": 260,
-        "ceiling_price_inr_per_t": 360
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "hosur_textile",
@@ -183,20 +203,7 @@
     "urgency": "medium",
     "hazard_license": true,
     "outputs": [],
-    "inputs": [
-      {
-        "material": "textile_dyeing_sludge",
-        "qty_t_per_month": 70,
-        "target_price_inr_per_t": 100,
-        "ceiling_price_inr_per_t": 250
-      },
-      {
-        "material": "fly_ash",
-        "qty_t_per_month": 500,
-        "target_price_inr_per_t": 350,
-        "ceiling_price_inr_per_t": 550
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "tiruppur_dyeing",
@@ -231,14 +238,7 @@
     "urgency": "medium",
     "hazard_license": true,
     "outputs": [],
-    "inputs": [
-      {
-        "material": "textile_dyeing_sludge",
-        "qty_t_per_month": 100,
-        "target_price_inr_per_t": 90,
-        "ceiling_price_inr_per_t": 220
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "tiruppur_knitwear",
@@ -251,14 +251,7 @@
     "urgency": "low",
     "hazard_license": false,
     "outputs": [],
-    "inputs": [
-      {
-        "material": "rice_husk",
-        "qty_t_per_month": 200,
-        "target_price_inr_per_t": 1700,
-        "ceiling_price_inr_per_t": 2100
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "tiruppur_biomass_power",
@@ -271,14 +264,7 @@
     "urgency": "medium",
     "hazard_license": false,
     "outputs": [],
-    "inputs": [
-      {
-        "material": "rice_husk",
-        "qty_t_per_month": 300,
-        "target_price_inr_per_t": 1750,
-        "ceiling_price_inr_per_t": 2150
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "jsr_steel_works",
@@ -322,20 +308,7 @@
         "storage_days": 45
       }
     ],
-    "inputs": [
-      {
-        "material": "steel_slag",
-        "qty_t_per_month": 1100,
-        "target_price_inr_per_t": 900,
-        "ceiling_price_inr_per_t": 1300
-      },
-      {
-        "material": "fly_ash",
-        "qty_t_per_month": 800,
-        "target_price_inr_per_t": 350,
-        "ceiling_price_inr_per_t": 580
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "jsr_road_construction",
@@ -348,20 +321,7 @@
     "urgency": "low",
     "hazard_license": false,
     "outputs": [],
-    "inputs": [
-      {
-        "material": "cement_kiln_dust",
-        "qty_t_per_month": 140,
-        "target_price_inr_per_t": 80,
-        "ceiling_price_inr_per_t": 190
-      },
-      {
-        "material": "foundry_sand",
-        "qty_t_per_month": 200,
-        "target_price_inr_per_t": 250,
-        "ceiling_price_inr_per_t": 350
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "jsr_thermal_power",
@@ -408,32 +368,6 @@
     "inputs": []
   },
   {
-    "id": "bellary_cement",
-    "name": "Bellary Cement Works",
-    "cluster": "Bellary-Hospet",
-    "lat": 15.14,
-    "lon": 76.921,
-    "industry": "cement",
-    "persona": "Aggressive negotiator, always opens low, expects to be countered.",
-    "urgency": "medium",
-    "hazard_license": false,
-    "outputs": [],
-    "inputs": [
-      {
-        "material": "steel_slag",
-        "qty_t_per_month": 650,
-        "target_price_inr_per_t": 850,
-        "ceiling_price_inr_per_t": 1250
-      },
-      {
-        "material": "fly_ash",
-        "qty_t_per_month": 400,
-        "target_price_inr_per_t": 330,
-        "ceiling_price_inr_per_t": 560
-      }
-    ]
-  },
-  {
     "id": "bellary_thermal_power",
     "name": "Bellary Thermal Power Station",
     "cluster": "Bellary-Hospet",
@@ -466,14 +400,7 @@
     "urgency": "high",
     "hazard_license": false,
     "outputs": [],
-    "inputs": [
-      {
-        "material": "fly_ash",
-        "qty_t_per_month": 500,
-        "target_price_inr_per_t": 320,
-        "ceiling_price_inr_per_t": 520
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "mundra_thermal_power",
@@ -508,20 +435,7 @@
     "urgency": "medium",
     "hazard_license": false,
     "outputs": [],
-    "inputs": [
-      {
-        "material": "fly_ash",
-        "qty_t_per_month": 1300,
-        "target_price_inr_per_t": 360,
-        "ceiling_price_inr_per_t": 580
-      },
-      {
-        "material": "lime_sludge",
-        "qty_t_per_month": 280,
-        "target_price_inr_per_t": 150,
-        "ceiling_price_inr_per_t": 340
-      }
-    ]
+    "inputs": []
   },
   {
     "id": "mundra_agro_rice",
@@ -573,34 +487,33 @@
         "storage_days": 30
       }
     ],
-    "inputs": [
-      {
-        "material": "rice_husk_ash",
-        "qty_t_per_month": 75,
-        "target_price_inr_per_t": 2500,
-        "ceiling_price_inr_per_t": 4200
-      }
-    ]
+    "inputs": []
   },
   {
-    "outputs": [],
-    "inputs": [
+    "outputs": [
       {
         "material": "steel_slag",
-        "qty_t_per_month": 100.0,
-        "target_price_inr_per_t": 260.0,
-        "ceiling_price_inr_per_t": 300.0
+        "qty_t_per_month": 200.0,
+        "purity": 0.8,
+        "ask_price_inr_per_t": 400.0,
+        "floor_price_inr_per_t": 350.0,
+        "storage_days": 7
       }
     ],
-    "id": "123",
-    "name": "Bengaluru Craft Brewing Co.",
+    "inputs": [],
+    "id": "jws_steel",
+    "name": "JWS Steel Work",
     "cluster": "Peenya/Bengaluru",
-    "lat": 13.032466,
-    "lon": 77.5128,
-    "industry": "cement",
+    "lat": 12.933981,
+    "lon": 77.535094,
+    "industry": "metallurgical",
     "persona": "Data-driven procurement lead",
     "urgency": "medium",
-    "hazard_license": false
+    "hazard_license": false,
+    "phone": "+91 8431567935",
+    "source": "telegram",
+    "telegram_chat_id": 6146394496,
+    "telegram_username": null,
+    "registered_at": "2026-10-25T01:14:29.120747+00:00"
   }
-
 ]

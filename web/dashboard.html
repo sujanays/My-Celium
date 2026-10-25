@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MYCELIUM - Facility Dashboard</title>
+<link rel="stylesheet" href="/static/dashboard.css" />
+</head>
+<body>
+<header class="dash-top">
+  <div class="brand">MYCELIUM<small>facility registrations</small></div>
+  <div class="dash-controls">
+    <input id="search" type="search" placeholder="Search name, cluster, material, phone…" />
+    <div class="seg">
+      <button class="seg-btn active" data-filter="telegram">Telegram</button>
+      <button class="seg-btn" data-filter="all">All</button>
+    </div>
+    <a class="btn" href="/">← Map</a>
+  </div>
+</header>
+
+<main>
+  <div id="stats" class="stats"></div>
+  <div id="cards" class="cards"></div>
+  <div id="empty" class="empty" hidden>No facilities registered via Telegram yet. Send <code>/start</code> to the bot to register one.</div>
+</main>
+
+<div id="drawer-bg" class="drawer-bg" hidden></div>
+<aside id="drawer" class="drawer" hidden>
+  <div class="drawer-head">
+    <div>
+      <div id="d-name" class="d-name"></div>
+      <div id="d-sub" class="d-sub"></div>
+    </div>
+    <button id="d-close" class="icon-btn" aria-label="Close">✕</button>
+  </div>
+  <div id="d-meta" class="d-meta"></div>
+  <div class="chat-title">Telegram conversation</div>
+  <div id="chat" class="chat"></div>
+  <form id="quote-form" class="quote-form">
+    <div class="qf-row">
+      <select id="q-material"></select>
+      <div class="amount">
+        <span>₹</span>
+        <input id="q-amount" type="number" min="1" step="1" placeholder="Amount / tonne" required />
+      </div>
+    </div>
+    <div class="qf-row">
+      <input id="q-note" type="text" placeholder="Optional note to the facility" />
+      <button id="q-send" class="btn primary" type="submit">Send price</button>
+    </div>
+    <div id="q-status" class="q-status"></div>
+  </form>
+</aside>
+
+<script src="/static/dashboard.js"></script>
+</body>
+</html>

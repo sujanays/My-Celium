@@ -175,9 +175,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     context.user_data["inputs"] = []
 
     await update.message.reply_text(
-        "👋 Welcome to **Mycelium Facility Ingestion Bot**!\n\n"
-        "Let's register or update a facility in `facilities.json`.\n"
-        "Please enter the unique **Facility ID** (e.g., `peenya_foundry`):"
+        "👋 Welcome to Mycelium Facility Ingestion Bot!\n\n"
+        "Let's register or update a facility in 'facilities.json'.\n"
+        "Please enter the unique Facility ID:"
     )
     return ID
 
@@ -194,7 +194,7 @@ async def get_id(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         [InlineKeyboardButton("✏️ Other (Type Custom Name)", callback_data="other")],
     ]
     await update.message.reply_text(
-        "Select or type the **Facility Name**:",
+        "Select or type the Facility Name:",
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
     return NAME
@@ -205,7 +205,7 @@ async def get_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         query = update.callback_query
         await query.answer()
         if query.data == "other":
-            await query.edit_message_text("Please type your custom **Facility Name**:")
+            await query.edit_message_text("Please type your custom  Facility Name :")
             return NAME
         context.user_data["name"] = query.data
         msg_func = query.edit_message_text
@@ -220,7 +220,7 @@ async def get_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         [InlineKeyboardButton("Mundra", callback_data="Mundra"), InlineKeyboardButton("✏️ Other (Type Custom Cluster)", callback_data="other")],
     ]
     await msg_func(
-        "Select the **Cluster/Region**:",
+        "Select the Cluster/Region:",
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
     return CLUSTER
@@ -231,7 +231,7 @@ async def get_cluster(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         query = update.callback_query
         await query.answer()
         if query.data == "other":
-            await query.edit_message_text("Please type your custom **Cluster/Region**:")
+            await query.edit_message_text("Please type your custom Cluster/Region:")
             return CLUSTER
         context.user_data["cluster"] = query.data
         msg_func = query.edit_message_text
@@ -240,7 +240,7 @@ async def get_cluster(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         msg_func = update.message.reply_text
 
     await msg_func(
-        "Enter **Latitude and Longitude** (e.g., `13.031 77.517`) or send a Location pin clip:"
+        "send a Location pin clip or Latitude and Longitude (e.g., `13.031 77.517`):"
     )
     return COORDS
 
@@ -268,7 +268,7 @@ async def get_coords(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         [InlineKeyboardButton("✏️ Other...", callback_data="other")],
     ]
     await update.message.reply_text(
-        "Select the **Industry Sector**:",
+        "Select the Industry Sector:",
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
     return INDUSTRY
@@ -279,7 +279,7 @@ async def get_industry(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
     await query.answer()
 
     if query.data == "other":
-        await query.edit_message_text("Please type the **Custom Industry Sector**:")
+        await query.edit_message_text("Please type the Custom Industry Sector:")
         return CUSTOM_INDUSTRY
 
     context.user_data["industry"] = query.data
@@ -299,7 +299,7 @@ async def ask_persona(reply_func) -> int:
         [InlineKeyboardButton("✏️ Other (Type Custom Persona)", callback_data="other")],
     ]
     await reply_func(
-        "Select the **Persona/Negotiation Profile**:",
+        "Select the Persona/Negotiation Profile:",
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
     return PERSONA
@@ -310,7 +310,7 @@ async def get_persona(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         query = update.callback_query
         await query.answer()
         if query.data == "other":
-            await query.edit_message_text("Please type your custom **Persona Description**:")
+            await query.edit_message_text("Please type your custom  Persona Description :")
             return PERSONA
         context.user_data["persona"] = query.data
         msg_func = query.edit_message_text
@@ -324,7 +324,7 @@ async def get_persona(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         [InlineKeyboardButton("High", callback_data="high")],
     ]
     await msg_func(
-        "Select the **Urgency Level**:",
+        "Select the Urgency Level:",
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
     return URGENCY
@@ -339,7 +339,7 @@ async def get_urgency(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         [InlineKeyboardButton("Yes", callback_data="yes"), InlineKeyboardButton("No", callback_data="no")],
     ]
     await query.edit_message_text(
-        f"Selected Urgency: **{query.data}**\n\nHolds a valid **Hazard License**?",
+        f"Selected Urgency: {query.data}\n\nHolds a valid Hazard License?",
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
     return HAZARD
@@ -350,10 +350,10 @@ async def get_hazard(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     await query.answer()
     context.user_data["hazard_license"] = (query.data == "yes")
 
-    await query.edit_message_text(f"Hazard License: **{query.data}**")
+    await query.edit_message_text(f"Hazard License:  {query.data} ")
     keyboard = [[KeyboardButton("📱 Share my number", request_contact=True)]]
     await query.message.reply_text(
-        "📞 Please share your **Contact Number** (tap the button or type it, e.g. `+91 98765 43210`).\n"
+        "📞 Please share your  Contact Number  (tap the button or type it, e.g. `+91 98765 43210`).\n"
         "We'll use it to reach you with price offers for your materials.",
         reply_markup=ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True),
     )
@@ -380,7 +380,7 @@ async def get_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         [InlineKeyboardButton("➡️ Skip Outputs", callback_data="skip_output")],
     ]
     await update.message.reply_text(
-        "📦 **OUTPUTS SECTION** (Materials generated by facility):",
+        "📦  OUTPUTS SECTION  (Materials generated by facility):",
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
     return OUT_NAME
@@ -397,7 +397,7 @@ async def start_output_item(update: Update, context: ContextTypes.DEFAULT_TYPE) 
             [InlineKeyboardButton("➡️ Skip Inputs", callback_data="skip_input")],
         ]
         await query.edit_message_text(
-            "📥 **INPUTS SECTION** (Materials required by facility):",
+            "📥  INPUTS SECTION  (Materials required by facility):",
             reply_markup=InlineKeyboardMarkup(keyboard),
         )
         return IN_NAME
@@ -413,7 +413,7 @@ async def start_output_item(update: Update, context: ContextTypes.DEFAULT_TYPE) 
     keyboard.append([InlineKeyboardButton("✏️ Other...", callback_data="other")])
 
     await query.edit_message_text(
-        "Select the **Output Material**:",
+        "Select the  Output Material :",
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
     return OUT_QTY
@@ -424,7 +424,7 @@ async def get_out_qty(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         query = update.callback_query
         await query.answer()
         if query.data == "other":
-            await query.edit_message_text("Type the custom **Output Material Name**:")
+            await query.edit_message_text("Type the custom  Output Material Name :")
             return CUSTOM_OUT_NAME
         context.user_data["temp_out"]["material"] = query.data
         msg_func = query.edit_message_text
@@ -436,7 +436,7 @@ async def get_out_qty(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         [InlineKeyboardButton("50", callback_data="50"), InlineKeyboardButton("100", callback_data="100"), InlineKeyboardButton("200", callback_data="200")],
         [InlineKeyboardButton("500", callback_data="500"), InlineKeyboardButton("1000", callback_data="1000"), InlineKeyboardButton("✏️ Other...", callback_data="other")],
     ]
-    await msg_func("Select **Quantity generated (tonnes/month)**:", reply_markup=InlineKeyboardMarkup(keyboard))
+    await msg_func("Select  Quantity generated (tonnes/month) :", reply_markup=InlineKeyboardMarkup(keyboard))
     return OUT_PURITY
 
 
@@ -446,7 +446,7 @@ async def get_custom_out_name(update: Update, context: ContextTypes.DEFAULT_TYPE
         [InlineKeyboardButton("50", callback_data="50"), InlineKeyboardButton("100", callback_data="100"), InlineKeyboardButton("200", callback_data="200")],
         [InlineKeyboardButton("500", callback_data="500"), InlineKeyboardButton("1000", callback_data="1000"), InlineKeyboardButton("✏️ Other...", callback_data="other")],
     ]
-    await update.message.reply_text("Select **Quantity generated (tonnes/month)**:", reply_markup=InlineKeyboardMarkup(keyboard))
+    await update.message.reply_text("Select  Quantity generated (tonnes/month) :", reply_markup=InlineKeyboardMarkup(keyboard))
     return OUT_PURITY
 
 
@@ -455,7 +455,7 @@ async def get_out_purity(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         query = update.callback_query
         await query.answer()
         if query.data == "other":
-            await query.edit_message_text("Type the custom **Quantity in Tonnes**:")
+            await query.edit_message_text("Type the custom  Quantity in Tonnes :")
             return OUT_PURITY
         context.user_data["temp_out"]["qty_t_per_month"] = float(query.data)
         msg_func = query.edit_message_text
@@ -472,7 +472,7 @@ async def get_out_purity(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         [InlineKeyboardButton("0.90", callback_data="0.90"), InlineKeyboardButton("0.95", callback_data="0.95")],
         [InlineKeyboardButton("✏️ Other...", callback_data="other")],
     ]
-    await msg_func("Select **Material Purity**:", reply_markup=InlineKeyboardMarkup(keyboard))
+    await msg_func("Select  Material Purity :", reply_markup=InlineKeyboardMarkup(keyboard))
     return OUT_ASK_PRICE
 
 
@@ -481,7 +481,7 @@ async def get_out_ask_price(update: Update, context: ContextTypes.DEFAULT_TYPE) 
         query = update.callback_query
         await query.answer()
         if query.data == "other":
-            await query.edit_message_text("Type the custom **Purity (0.0 - 1.0)**:")
+            await query.edit_message_text("Type the custom  Purity (0.0 - 1.0) :")
             return OUT_ASK_PRICE
         context.user_data["temp_out"]["purity"] = float(query.data)
         msg_func = query.edit_message_text
@@ -493,7 +493,7 @@ async def get_out_ask_price(update: Update, context: ContextTypes.DEFAULT_TYPE) 
             return OUT_ASK_PRICE
         msg_func = update.message.reply_text
 
-    await msg_func("💰 **MONEY INPUT**: Type the **Asking Price** in INR per tonne (e.g., `380`):")
+    await msg_func("💰  MONEY INPUT : Type the  Asking Price  in INR per tonne (e.g., `380`):")
     return OUT_FLOOR_PRICE
 
 
@@ -504,7 +504,7 @@ async def get_out_floor_price(update: Update, context: ContextTypes.DEFAULT_TYPE
         await update.message.reply_text("❌ Enter a numerical price in INR:")
         return OUT_FLOOR_PRICE
 
-    await update.message.reply_text("💰 **MONEY INPUT**: Type the minimum **Floor Price** in INR per tonne (e.g., `220`):")
+    await update.message.reply_text("💰  MONEY INPUT : Type the minimum  Floor Price  in INR per tonne (e.g., `220`):")
     return OUT_STORAGE
 
 
@@ -519,7 +519,7 @@ async def get_out_storage(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         [InlineKeyboardButton("1 Day", callback_data="1"), InlineKeyboardButton("7 Days", callback_data="7"), InlineKeyboardButton("30 Days", callback_data="30")],
         [InlineKeyboardButton("60 Days", callback_data="60"), InlineKeyboardButton("90 Days", callback_data="90"), InlineKeyboardButton("✏️ Other...", callback_data="other")],
     ]
-    await update.message.reply_text("Select maximum **Storage Days**:", reply_markup=InlineKeyboardMarkup(keyboard))
+    await update.message.reply_text("Select maximum  Storage Days :", reply_markup=InlineKeyboardMarkup(keyboard))
     return OUT_MORE
 
 
@@ -528,7 +528,7 @@ async def save_out_item(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
         query = update.callback_query
         await query.answer()
         if query.data == "other":
-            await query.edit_message_text("Type custom **Storage Days**:")
+            await query.edit_message_text("Type custom  Storage Days :")
             return OUT_MORE
         context.user_data["temp_out"]["storage_days"] = int(query.data)
         msg_func = query.edit_message_text
@@ -547,7 +547,7 @@ async def save_out_item(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
         [InlineKeyboardButton("➕ Add Another Output", callback_data="add_output")],
         [InlineKeyboardButton("➡️ Proceed to Inputs", callback_data="skip_output")],
     ]
-    await msg_func("✅ Output material recorded!\nAdd another **Output**?", reply_markup=InlineKeyboardMarkup(keyboard))
+    await msg_func("✅ Output material recorded!\nAdd another  Output ?", reply_markup=InlineKeyboardMarkup(keyboard))
     return OUT_NAME
 
 
@@ -569,7 +569,7 @@ async def start_input_item(update: Update, context: ContextTypes.DEFAULT_TYPE) -
         keyboard.append(row)
     keyboard.append([InlineKeyboardButton("✏️ Other...", callback_data="other")])
 
-    await query.edit_message_text("Select the **Input Material**:", reply_markup=InlineKeyboardMarkup(keyboard))
+    await query.edit_message_text("Select the  Input Material :", reply_markup=InlineKeyboardMarkup(keyboard))
     return IN_QTY
 
 
@@ -578,7 +578,7 @@ async def get_in_qty(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         query = update.callback_query
         await query.answer()
         if query.data == "other":
-            await query.edit_message_text("Type custom **Input Material Name**:")
+            await query.edit_message_text("Type custom  Input Material Name :")
             return CUSTOM_IN_NAME
         context.user_data["temp_in"]["material"] = query.data
         msg_func = query.edit_message_text
@@ -590,7 +590,7 @@ async def get_in_qty(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         [InlineKeyboardButton("100", callback_data="100"), InlineKeyboardButton("300", callback_data="300"), InlineKeyboardButton("500", callback_data="500")],
         [InlineKeyboardButton("800", callback_data="800"), InlineKeyboardButton("1000", callback_data="1000"), InlineKeyboardButton("✏️ Other...", callback_data="other")],
     ]
-    await msg_func("Select **Required Quantity (tonnes/month)**:", reply_markup=InlineKeyboardMarkup(keyboard))
+    await msg_func("Select  Required Quantity (tonnes/month) :", reply_markup=InlineKeyboardMarkup(keyboard))
     return IN_TARGET_PRICE
 
 
@@ -600,7 +600,7 @@ async def get_custom_in_name(update: Update, context: ContextTypes.DEFAULT_TYPE)
         [InlineKeyboardButton("100", callback_data="100"), InlineKeyboardButton("300", callback_data="300"), InlineKeyboardButton("500", callback_data="500")],
         [InlineKeyboardButton("800", callback_data="800"), InlineKeyboardButton("1000", callback_data="1000"), InlineKeyboardButton("✏️ Other...", callback_data="other")],
     ]
-    await update.message.reply_text("Select **Required Quantity (tonnes/month)**:", reply_markup=InlineKeyboardMarkup(keyboard))
+    await update.message.reply_text("Select  Required Quantity (tonnes/month) :", reply_markup=InlineKeyboardMarkup(keyboard))
     return IN_TARGET_PRICE
 
 
@@ -609,7 +609,7 @@ async def get_in_target_price(update: Update, context: ContextTypes.DEFAULT_TYPE
         query = update.callback_query
         await query.answer()
         if query.data == "other":
-            await query.edit_message_text("Type custom **Quantity in Tonnes**:")
+            await query.edit_message_text("Type custom  Quantity in Tonnes :")
             return IN_TARGET_PRICE
         context.user_data["temp_in"]["qty_t_per_month"] = float(query.data)
         msg_func = query.edit_message_text
@@ -621,7 +621,7 @@ async def get_in_target_price(update: Update, context: ContextTypes.DEFAULT_TYPE
             return IN_TARGET_PRICE
         msg_func = update.message.reply_text
 
-    await msg_func("💰 **MONEY INPUT**: Type the **Target Price** in INR per tonne (e.g., `260`):")
+    await msg_func("💰  MONEY INPUT : Type the  Target Price  in INR per tonne (e.g., `260`):")
     return IN_CEILING_PRICE
 
 
@@ -632,7 +632,7 @@ async def get_in_ceiling_price(update: Update, context: ContextTypes.DEFAULT_TYP
         await update.message.reply_text("❌ Enter a numerical price in INR:")
         return IN_CEILING_PRICE
 
-    await update.message.reply_text("💰 **MONEY INPUT**: Type maximum **Ceiling Price** in INR per tonne (e.g., `360`):")
+    await update.message.reply_text("💰  MONEY INPUT : Type maximum  Ceiling Price  in INR per tonne (e.g., `360`):")
     return IN_MORE
 
 
@@ -650,7 +650,7 @@ async def save_in_item(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
         [InlineKeyboardButton("➕ Add Another Input", callback_data="add_input")],
         [InlineKeyboardButton("➡️ Finish & Review", callback_data="skip_input")],
     ]
-    await update.message.reply_text("✅ Input material recorded!\nAdd another **Input**?", reply_markup=InlineKeyboardMarkup(keyboard))
+    await update.message.reply_text("✅ Input material recorded!\nAdd another  Input ?", reply_markup=InlineKeyboardMarkup(keyboard))
     return IN_NAME
 
 
@@ -661,7 +661,7 @@ async def show_summary(msg_func, context) -> int:
         [InlineKeyboardButton("❌ Cancel", callback_data="cancel")],
     ]
     await msg_func(
-        f"📋 **Summary of Facility Entry**:\n```json\n{summary}\n```\nConfirm submission?",
+        f"📋  Summary of Facility Entry :\n```json\n{summary}\n```\nConfirm submission?",
         reply_markup=InlineKeyboardMarkup(keyboard),
         parse_mode="Markdown",
     )
@@ -686,7 +686,7 @@ async def confirm_and_save(update: Update, context: ContextTypes.DEFAULT_TYPE) -
         upsert_facility(facility_data)
         upsert_materials_from_lists(facility_data.get("outputs", []), facility_data.get("inputs", []))
 
-        await query.edit_message_text("✅ **Successfully updated `facilities.json` and synced `materials.json`**!")
+        await query.edit_message_text("✅  Successfully updated `facilities.json` and synced `materials.json` !")
     else:
         await query.edit_message_text("❌ Action cancelled.")
 

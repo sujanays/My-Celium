@@ -1,0 +1,9 @@
+{
+  "action": "offer",
+  "price_inr_per_t": 180,
+  "volume_t_per_month": 220,
+  "logistics_split": "buyer_pickup",
+  "public_message": "We\u2019ll sell at Rs.180 per tonne, you handle pickup.",
+  "private_reasoning": "Push buyer to pickup to avoid transport cost, secure price well above floor.",
+  "confidence": 0.85
+}

@@ -43,3 +43,4 @@
 {"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "spent_brewery_grain", "outcome": "deal_closed", "final_price": 650, "rounds": 3, "human_note": null}
 {"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "spent_brewery_grain", "outcome": "deal_closed", "final_price": 650, "rounds": 3, "human_note": null}
 {"counterparty_id": "bengaluru_craft_brewery", "counterparty_name": "Bengaluru Craft Brewing Co.", "material": "spent_brewery_grain", "outcome": "deal_closed", "final_price": 650, "rounds": 3, "human_note": null}
+{"counterparty_id": "jgb_cmt", "counterparty_name": "JgB cement factory", "material": "dairy_manure_whey", "outcome": "deal_closed", "final_price": 145, "rounds": 5, "human_note": null}

@@ -977,3 +977,76 @@ html, body {
     height: 75px;
   }
 }
+/* ---------------------------------------------------------------- Theatre chat history */
+.theatre-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.history-tools { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--ink-dim); }
+.history-clear {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink-dim);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font: inherit;
+  cursor: pointer;
+}
+.history-clear:hover { color: var(--red); border-color: var(--red); }
+
+.session {
+  flex: none;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(10, 15, 13, 0.6);
+}
+.session.live { border-color: rgba(53, 224, 192, 0.45); }
+.session > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  user-select: none;
+}
+.session > summary::-webkit-details-marker { display: none; }
+.session > summary::before { content: "▸"; color: var(--ink-dim); transition: transform 0.15s; }
+.session[open] > summary::before { transform: rotate(90deg); }
+.session[open] > summary { border-bottom: 1px solid var(--border); }
+.session .s-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.session .s-status { color: var(--amber); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45%; }
+.session.live .s-status { color: var(--teal); }
+.session .s-time { color: var(--ink-dim); font-size: 11px; white-space: nowrap; }
+.session-content { display: flex; flex-direction: column; gap: 10px; padding: 10px; }
+
+.leg-divider {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  border-top: 1px dashed var(--border);
+  padding-top: 8px;
+}
+.session-content > .leg-divider:first-child { border-top: 0; padding-top: 0; }
+
+.decision-card {
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  background: #0c1412;
+}
+.decision-card h3 { margin: 0 0 4px; font-size: 14px; }
+.decision-card .decision-line { font-size: 12px; color: var(--ink-dim); margin-bottom: 6px; }
+.decision-card.approve { border-color: var(--teal); }
+.decision-card.approve h3 { color: var(--teal); }
+.decision-card.reject { border-color: var(--red); }
+.decision-card.reject h3 { color: var(--red); }
+.decision-card.navigate { border-color: #6bc7d9; }
+.decision-card.navigate h3 { color: #6bc7d9; }
+
+.signoff button[disabled] { opacity: 0.4; cursor: default; }
+.signoff button.chosen[disabled] { opacity: 1; outline: 2px solid currentColor; outline-offset: 2px; }
